@@ -723,18 +723,18 @@
     <!-- ── REQUIREMENTS ─────────────────────────────────── -->
     <section id="requirements">
       <h2>Requirements</h2>
-      <p>Verify your local environment before starting. The app supports modern Flutter stable channels (configured in <span class="filepath">pubspec.yaml</span> as <code>sdk: '>=3.0.0 &lt;4.0.0'</code> and <code>flutter: '>=3.10.0'</code>).</p>
+      <p>Verify your local environment before starting. The app supports modern Flutter stable channels (configured in <span class="filepath">pubspec.yaml</span> as <code>sdk: '>=3.11.0 &lt;4.0.0'</code> and <code>flutter: '>=3.38.1'</code>).</p>
 
       <table class="req-table">
         <thead>
           <tr><th>Tool</th><th>Version</th><th>Notes</th></tr>
         </thead>
         <tbody>
-          <tr><td>Flutter SDK</td><td><code>&gt;=3.10.0</code></td><td>Supports Flutter 3.10 up to 3.27+ / 3.x stable</td></tr>
-          <tr><td>Dart SDK</td><td><code>&gt;=3.0.0 &lt;4.0.0</code></td><td>Bundled with Flutter 3.x</td></tr>
+          <tr><td>Flutter SDK</td><td><code>&gt;=3.38.1</code></td><td>Latest stable channel recommended</td></tr>
+          <tr><td>Dart SDK</td><td><code>&gt;=3.11.0 &lt;4.0.0</code></td><td>Bundled with Flutter 3.38+</td></tr>
           <tr><td>Java</td><td><code>17</code></td><td>Required for Android Gradle</td></tr>
           <tr><td>Android SDK</td><td>min <code>21</code></td><td>Android 5.0+</td></tr>
-          <tr><td>iOS Deployment Target</td><td><code>13.0</code></td><td>Required for Firebase Auth</td></tr>
+          <tr><td>iOS Deployment Target</td><td><code>15.0</code></td><td>Required by the Firebase SDK</td></tr>
           <tr><td>Xcode</td><td><code>15+</code></td><td>For iOS builds</td></tr>
         </tbody>
       </table>
@@ -923,7 +923,7 @@
       </div>
 
       <p>Android manifest file path: <span class="filepath">android/app/src/main/AndroidManifest.xml</span></p>
-      <p>Ensure the <code>package</code> attribute on the root <code>&lt;manifest&gt;</code> element matches your applicationId.</p>
+      <p>Also update the <code>package</code> attribute on the root <code>&lt;manifest&gt;</code> element (if present) so it matches your <code>applicationId</code>.</p>
 
       <h3>iOS — Xcode Project Configuration</h3>
       <p>iOS Xcode workspace file path: <span class="filepath">ios/Runner.xcworkspace</span></p>
@@ -1152,7 +1152,7 @@
     <!-- ── FIREBASE ─────────────────────────────────────── -->
     <section id="firebase">
       <h2>Firebase Setup</h2>
-      <p>Firebase powers user authentication (Google Sign-In + Guest Anonymous mode) and Cloud Firestore for sync and coin balance management. Connect your own Firebase project following the steps below.</p>
+      <p>Firebase powers user authentication (Google Sign-In) and Cloud Firestore for sync and coin balance management. Firebase is <strong>required</strong> for sign-in and coin sync, so connect your own Firebase project following the steps below. The &ldquo;Continue as guest&rdquo; button simply opens the app without signing in.</p>
 
       <p><strong>Firebase Service implementation file path:</strong> <span class="filepath">lib/services/firebase_service.dart</span></p>
       <p><strong>Auth Cubit file path:</strong> <span class="filepath">lib/features/auth/presentation/cubit/auth_cubit.dart</span></p>
@@ -1182,7 +1182,7 @@
         <div class="step">
           <div class="step-num">4</div>
           <div class="step-body">
-            <p>In the Firebase Console, go to <strong>Authentication → Sign-in method</strong>, enable <strong>Google Sign-In</strong> and <strong>Anonymous</strong> logins. Register your app's SHA-1 and SHA-256 fingerprints for Android Google Sign-In.</p>
+            <p>In the Firebase Console, go to <strong>Authentication → Sign-in method</strong>, enable <strong>Google Sign-In</strong>. Register your app's SHA-1 and SHA-256 fingerprints for Android Google Sign-In.</p>
           </div>
         </div>
         <div class="step">
@@ -1242,7 +1242,8 @@
           <span class="code-block-title">lib/services/api_key_manager.dart</span>
           <button class="copy-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy</button>
         </div>
-        <pre><code><span class="c-comment">// ── Primary Provider (Gemini) ─────────────────────────────</span>
+        <pre><code><span class="c-comment">// The app ships with NO API keys. Add yours in the app under</span>
+<span class="c-comment">// Settings → API Settings, or add them here:</span>
 <span class="c-tag">static final</span> List&lt;ApiKeyConfig&gt; _geminiKeys = [
   ApiKeyConfig(
     key: <span class="c-str">"YOUR_GEMINI_API_KEY"</span>,
@@ -1252,12 +1253,12 @@
   ),
 ];
 
-<span class="c-comment">// ── Fallback Providers ────────────────────────────────────</span>
-<span class="c-tag">static final</span> List&lt;ApiKeyConfig&gt; _groqKeys        = [ <span class="c-comment">/* Groq key */</span> ];
-<span class="c-tag">static final</span> List&lt;ApiKeyConfig&gt; _huggingFaceKeys = [ <span class="c-comment">/* HuggingFace key */</span> ];
-<span class="c-tag">static final</span> List&lt;ApiKeyConfig&gt; _cohereKeys      = [ <span class="c-comment">/* Cohere key */</span> ];
-<span class="c-tag">static final</span> List&lt;ApiKeyConfig&gt; _openaiKeys      = [ <span class="c-comment">/* OpenAI key */</span> ];
-<span class="c-tag">static final</span> List&lt;ApiKeyConfig&gt; _grokKeys        = [ <span class="c-comment">/* Grok key */</span> ];</code></pre>
+<span class="c-comment">// Fallback providers (empty by default, same format as above)</span>
+<span class="c-tag">static final</span> List&lt;ApiKeyConfig&gt; _groqKeys        = [];
+<span class="c-tag">static final</span> List&lt;ApiKeyConfig&gt; _huggingFaceKeys = [];
+<span class="c-tag">static final</span> List&lt;ApiKeyConfig&gt; _cohereKeys      = [];
+<span class="c-tag">static final</span> List&lt;ApiKeyConfig&gt; _openaiKeys      = [];
+<span class="c-tag">static final</span> List&lt;ApiKeyConfig&gt; _grokKeys        = [];</code></pre>
       </div>
 
       <div class="callout callout-info">
@@ -1273,7 +1274,7 @@
 
       <h3>1. Application Entry Point</h3>
       <p>File path: <span class="filepath">lib/main.dart</span></p>
-      <p>Initializes Firebase, GetIt DI, RevenueCat IAP, AI Key Managers, Demo Mode, and AdMob before binding global BLoC providers.</p>
+      <p>Initializes Firebase, GetIt DI, In-App Purchases, AI Key Managers, and AdMob before binding global BLoC providers.</p>
 
       <h3>2. Dependency Injection Locator</h3>
       <p>File path: <span class="filepath">lib/core/di/injection_container.dart</span></p>
@@ -1283,11 +1284,7 @@
       <p>File path: <span class="filepath">lib/src/config/routes/route_helper.dart</span></p>
       <p>Central route table mapping route constants to screen widgets (splash, onboarding, dashboard, home, login, apiSettings).</p>
 
-      <h3>4. Demo Mode &amp; Testing Service</h3>
-      <p>File path: <span class="filepath">lib/services/demo_mode_service.dart</span></p>
-      <p>Provides mock AI data, demo coin management, and automatically forces test ads during app store review or development testing.</p>
-
-      <h3>5. Dashboard &amp; Start Screen</h3>
+      <h3>4. Dashboard &amp; Start Screen</h3>
       <p>File path: <span class="filepath">lib/src/presentation/view/pages/dashboard/start_screen.dart</span></p>
       <p>Main navigation shell hosting bottom navigation tabs, tool drawer, and quick feature access.</p>
     </section>
@@ -1328,25 +1325,15 @@
           <span class="code-block-title">lib/services/ad_manager.dart</span>
           <button class="copy-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy</button>
         </div>
-        <pre><code><span class="c-comment">// Banner Ad Unit ID</span>
-<span class="c-key">static String</span> <span class="c-tag">get</span> bannerAdUnitId =&gt; _useTestAds
-    ? <span class="c-str">'ca-app-pub-3940256099942544/6300978111'</span>  <span class="c-comment">// Test ID</span>
-    : <span class="c-str">'ca-app-pub-XXXXXXXXXXXXXXXX/XXXXXXXXXX'</span>; <span class="c-comment">// Production ID</span>
-
-<span class="c-comment">// Interstitial Ad Unit ID</span>
-<span class="c-key">static String</span> <span class="c-tag">get</span> interstitialAdUnitId =&gt; _useTestAds
-    ? <span class="c-str">'ca-app-pub-3940256099942544/1033173712'</span>
-    : <span class="c-str">'ca-app-pub-XXXXXXXXXXXXXXXX/XXXXXXXXXX'</span>;
-
-<span class="c-comment">// Rewarded Ad Unit ID</span>
-<span class="c-key">static String</span> <span class="c-tag">get</span> rewardedAdUnitId =&gt; _useTestAds
-    ? <span class="c-str">'ca-app-pub-3940256099942544/5224354917'</span>
-    : <span class="c-str">'ca-app-pub-XXXXXXXXXXXXXXXX/XXXXXXXXXX'</span>;</code></pre>
+        <pre><code><span class="c-comment">// Google's official TEST ad unit IDs. Replace with your own before publishing.</span>
+<span class="c-key">static const String</span> bannerAdUnitId       = <span class="c-str">'ca-app-pub-3940256099942544/6300978111'</span>;
+<span class="c-key">static const String</span> interstitialAdUnitId = <span class="c-str">'ca-app-pub-3940256099942544/1033173712'</span>;
+<span class="c-key">static const String</span> rewardedAdUnitId     = <span class="c-str">'ca-app-pub-3940256099942544/5224354917'</span>;</code></pre>
       </div>
 
       <div class="callout callout-warn">
         <svg class="callout-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-        <div><p>Always test with Google's official <strong>test ad unit IDs</strong> during testing. Switching to production IDs before testing complete builds will trigger invalid activity policy suspensions.</p></div>
+        <div><p>The project ships with Google's official <strong>test</strong> app and ad unit IDs, so it is safe to run as-is. Replace all of them (manifest, <code>Info.plist</code> and the three IDs above) with your own AdMob IDs only for your final release build. Clicking your own live ads during testing can get your AdMob account suspended for invalid activity.</p></div>
       </div>
     </section>
 
@@ -1416,8 +1403,9 @@
         <li>Updated display name &amp; bundle ID in <span class="filepath">ios/Runner/Info.plist</span></li>
         <li>Replaced icons in <span class="filepath">android/app/src/main/res/</span> and <span class="filepath">ios/Runner/Assets.xcassets/AppIcon.appiconset/</span></li>
         <li>Added production <span class="filepath">android/app/google-services.json</span> and <span class="filepath">ios/Runner/GoogleService-Info.plist</span></li>
-        <li>Configured live API keys in <span class="filepath">lib/services/api_key_manager.dart</span></li>
-        <li>Replaced test AdMob IDs with production IDs in <span class="filepath">lib/services/ad_manager.dart</span></li>
+        <li>Added your AI API keys (Settings → API Settings, or <span class="filepath">lib/services/api_key_manager.dart</span>)</li>
+        <li>Replaced the test AdMob IDs with your own in <span class="filepath">lib/services/ad_manager.dart</span>, <span class="filepath">AndroidManifest.xml</span> and <span class="filepath">Info.plist</span></li>
+        <li>Created your own release keystore and <span class="filepath">android/key.properties</span> (see the Flutter Android deployment guide linked below)</li>
         <li>Registered Consumable IAP Product IDs in Play Store &amp; App Store Connect</li>
       </ul>
 
