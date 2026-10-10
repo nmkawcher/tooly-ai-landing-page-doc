@@ -1,2 +1,4 @@
 User-agent: *
 Allow: /
+
+Sitemap: https://toolyai.vertexstation.com/sitemap.xml
