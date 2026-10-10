@@ -544,8 +544,8 @@
     /* Grid of Tools */
     .features-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-      gap: 1.5rem;
+      grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+      gap: 1.25rem;
     }
 
     .feature-card {
@@ -600,6 +600,44 @@
       color: var(--primary-light);
       width: fit-content;
     }
+
+
+    /* AI tools cards */
+    .tool-controls{display:flex;gap:1rem;align-items:center;justify-content:space-between;flex-wrap:wrap;margin-bottom:2rem}
+    .tool-filters{display:flex;gap:.5rem;flex-wrap:wrap}
+    .tool-chip{font-weight:600;font-size:.85rem;font-family:inherit;padding:.5rem 1rem;border-radius:100px;background:var(--bg-card);border:1px solid var(--border);color:var(--text-muted);cursor:pointer;transition:all .2s;display:inline-flex;gap:.45rem;align-items:center}
+    .tool-chip span{font-size:.7rem;background:var(--bg-subtle);border-radius:100px;padding:.05rem .45rem;color:var(--text-faint)}
+    .tool-chip:hover{border-color:var(--primary-light);color:var(--text)}
+    .tool-chip.active{background:var(--primary);border-color:var(--primary);color:#fff;box-shadow:0 4px 14px rgba(29,78,216,.35)}
+    .tool-chip.active span{background:rgba(255,255,255,.2);color:#fff}
+    .tool-search{display:flex;align-items:center;gap:.5rem;background:var(--bg-card);border:1px solid var(--border);border-radius:100px;padding:.5rem 1rem;color:var(--text-muted);min-width:220px}
+    .tool-search:focus-within{border-color:var(--primary-light)}
+    .tool-search input{all:unset;flex:1;color:var(--text);font-size:.9rem;min-width:0}
+    .tool-card{position:relative;isolation:isolate;display:flex;flex-direction:column;background:var(--bg-card);border:1px solid var(--border);border-radius:22px;padding:1.5rem;overflow:hidden;transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease,opacity .3s ease;opacity:0;transform:translateY(16px)}
+    .tool-card.in{opacity:1;transform:none}
+    .tool-card::before{content:"";position:absolute;inset:0;z-index:-1;opacity:0;transition:opacity .3s;background:radial-gradient(380px circle at var(--mx,50%) var(--my,0%),color-mix(in srgb,var(--c1) 20%,transparent),transparent 65%)}
+    .tool-card::after{content:"";position:absolute;left:0;right:0;top:0;height:3px;background:linear-gradient(90deg,var(--c1),var(--c2));transform:scaleX(0);transform-origin:left;transition:transform .35s ease}
+    .tool-card:hover{transform:translateY(-6px);border-color:color-mix(in srgb,var(--c1) 55%,var(--border));box-shadow:0 18px 40px -14px color-mix(in srgb,var(--c1) 55%,transparent)}
+    .tool-card:hover::before{opacity:1}.tool-card:hover::after{transform:scaleX(1)}
+    .tool-card.hide{display:none}
+    .tool-num{position:absolute;top:1.1rem;right:1.25rem;font:600 .75rem 'JetBrains Mono',monospace;color:var(--text-faint);opacity:.7}
+    .tool-icon{position:relative;width:60px;height:60px;border-radius:18px;margin-bottom:1.15rem;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--c1),var(--c2));box-shadow:0 10px 22px -8px var(--c1),inset 0 1px 0 rgba(255,255,255,.35);transition:transform .35s cubic-bezier(.34,1.56,.64,1)}
+    .tool-icon::after{content:"";position:absolute;inset:-6px;border-radius:22px;border:1.5px solid var(--c1);opacity:0;transform:scale(.85);transition:all .35s ease}
+    .tool-icon svg{width:28px;height:28px;filter:drop-shadow(0 2px 3px rgba(0,0,0,.2))}
+    .tool-card:hover .tool-icon{transform:rotate(-8deg) scale(1.1)}
+    .tool-card:hover .tool-icon::after{opacity:.45;transform:scale(1)}
+    .tool-title{font-size:1.1rem;font-weight:700;margin-bottom:.45rem;letter-spacing:-.01em}
+    .tool-desc{color:var(--text-muted);font-size:.9rem;line-height:1.6;flex:1;margin-bottom:1.1rem}
+    .tool-foot{display:flex;align-items:center;justify-content:space-between;gap:.5rem;flex-wrap:wrap}
+    .tool-tag{font-size:.72rem;font-weight:700;padding:.25rem .65rem;border-radius:100px;color:var(--c1);background:color-mix(in srgb,var(--c1) 12%,transparent);border:1px solid color-mix(in srgb,var(--c1) 25%,transparent)}
+    [data-theme="light"] .tool-tag{color:var(--c1)}
+    html:not([data-theme="light"]) .tool-tag{color:var(--c2)}
+    .tool-view{all:unset;cursor:pointer;font-size:.8rem;font-weight:600;color:var(--text-muted);display:inline-flex;gap:.3rem;align-items:center;padding:.25rem .5rem;border-radius:8px;transition:all .2s}
+    .tool-view span{transition:transform .2s}
+    .tool-view:hover,.tool-view:focus-visible{color:var(--primary-light);background:rgba(59,130,246,.1)}
+    .tool-view:hover span{transform:translateX(3px)}
+    .tool-empty{text-align:center;color:var(--text-muted);padding:2rem}
+    @media (prefers-reduced-motion:reduce){.tool-card,.tool-icon{transition:none}.tool-card{opacity:1;transform:none}}
 
     /* Business Model Section */
     .business-section {
@@ -960,98 +998,240 @@
     <div class="container">
       <div class="section-header">
         <div class="section-eyebrow">Complete AI Suite</div>
-        <h2 class="section-title">21+ Smart Tools Hand-Built for Daily Utility</h2>
+        <h2 class="section-title">22 Smart AI Tools &mdash; Chat, Create, Translate &amp; Convert</h2>
         <p class="section-desc">
           From developer tools and text translators to document OCR and social media managers — everything operates on a seamless coin credit system.
         </p>
       </div>
 
-      <div class="features-grid">
-        <div class="feature-card">
-          <div class="feature-icon-wrapper" style="background:#1d4ed8;">💬</div>
-          <h3 class="feature-card-title">Ask Anything AI Chat</h3>
-          <p class="feature-card-desc">Conversational chat assistant with chat history, speech-to-text input, and smart contextual answers.</p>
-          <span class="feature-tag">2 Coins / Request</span>
+      <div class="tool-controls">
+        <div class="tool-filters" id="tool-filters" role="tablist">
+          <button class="tool-chip active" data-filter="all" type="button">All <span>22</span></button>
+          <button class="tool-chip" data-filter="write" type="button">Write & Chat <span>7</span></button>
+          <button class="tool-chip" data-filter="create" type="button">Create <span>3</span></button>
+          <button class="tool-chip" data-filter="docs" type="button">Documents <span>7</span></button>
+          <button class="tool-chip" data-filter="media" type="button">Audio & Video <span>2</span></button>
+          <button class="tool-chip" data-filter="util" type="button">Utilities <span>3</span></button>
         </div>
-
-        <div class="feature-card">
-          <div class="feature-icon-wrapper" style="background:#8b5cf6;">💻</div>
-          <h3 class="feature-card-title">AI Code Generator</h3>
-          <p class="feature-card-desc">Generates code across Python, Dart, JavaScript, C++, and Kotlin with dark syntax highlighting and one-tap copy.</p>
-          <span class="feature-tag">5 Coins / Request</span>
-        </div>
-
-        <div class="feature-card">
-          <div class="feature-icon-wrapper" style="background:#10b981;">🎬</div>
-          <h3 class="feature-card-title">Script Specialist</h3>
-          <p class="feature-card-desc">Craft viral scripts for YouTube, TikTok, and Instagram with customizable duration sliders and hook breakdowns.</p>
-          <span class="feature-tag">10 Coins / Request</span>
-        </div>
-
-        <div class="feature-card">
-          <div class="feature-icon-wrapper" style="background:#f97316;">🌐</div>
-          <h3 class="feature-card-title">Multi-Language Translator</h3>
-          <p class="feature-card-desc">Translate text instantly across 15 supported global languages with auto-detect and reverse exchange.</p>
-          <span class="feature-tag">2 Coins / Request</span>
-        </div>
-
-        <div class="feature-card">
-          <div class="feature-icon-wrapper" style="background:#ec4899;">✉️</div>
-          <h3 class="feature-card-title">AI E-mail Writer</h3>
-          <p class="feature-card-desc">Draft professional, sales, or follow-up emails with adjustable formal, casual, or friendly tone settings.</p>
-          <span class="feature-tag">3 Coins / Request</span>
-        </div>
-
-        <div class="feature-card">
-          <div class="feature-icon-wrapper" style="background:#f59e0b;">🧮</div>
-          <h3 class="feature-card-title">AI Math Solver</h3>
-          <p class="feature-card-desc">Scan or type math equations and get step-by-step solutions for calculus, algebra, and physics problems.</p>
-          <span class="feature-tag">5 Coins / Request</span>
-        </div>
-
-        <div class="feature-card">
-          <div class="feature-icon-wrapper" style="background:#06b6d4;">📄</div>
-          <h3 class="feature-card-title">PDF to Text &amp; Summarizer</h3>
-          <p class="feature-card-desc">Extract structured layout text from PDF documents and generate key executive bullet takeaways.</p>
-          <span class="feature-tag">5 Coins / Request</span>
-        </div>
-
-        <div class="feature-card">
-          <div class="feature-icon-wrapper" style="background:#8b5cf6;">📹</div>
-          <h3 class="feature-card-title">Video &amp; Audio Transcriber</h3>
-          <p class="feature-card-desc">Transcribe MP4, MOV, MP3, WAV, and M4A media files into formatted notes and summaries.</p>
-
-          <span class="feature-tag">5 Coins / Request</span>
-        </div>
-
-        <div class="feature-card">
-          <div class="feature-icon-wrapper" style="background:#10b981;">🔗</div>
-          <h3 class="feature-card-title">Website Summarizer</h3>
-          <p class="feature-card-desc">Paste any article or blog URL to extract key takeaways, executive summaries, and main highlights.</p>
-          <span class="feature-tag">5 Coins / Request</span>
-        </div>
-
-        <div class="feature-card">
-          <div class="feature-icon-wrapper" style="background:#1d4ed8;">🖼️</div>
-          <h3 class="feature-card-title">AI Image Generator &amp; OCR</h3>
-          <p class="feature-card-desc">Generate images from prompts and describe visual contents with alt-text and OCR text extraction.</p>
-          <span class="feature-tag">5 Coins / Request</span>
-        </div>
-
-        <div class="feature-card">
-          <div class="feature-icon-wrapper" style="background:#f97316;">📲</div>
-          <h3 class="feature-card-title">Social Media Growth Engine</h3>
-          <p class="feature-card-desc">Create high-engagement posts and viral hashtag sets for Instagram, LinkedIn, X, TikTok, and YouTube.</p>
-          <span class="feature-tag">1-2 Coins / Request</span>
-        </div>
-
-        <div class="feature-card">
-          <div class="feature-icon-wrapper" style="background:#ec4899;">🔑</div>
-          <h3 class="feature-card-title">Password &amp; Notes Utility</h3>
-          <p class="feature-card-desc">Secure password generator with live strength meter and personal AI notes manager with priority tags.</p>
-          <span class="feature-tag">Free Feature</span>
-        </div>
+        <label class="tool-search"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.3-4.3"/></svg><input id="tool-search" type="search" placeholder="Search tools..." aria-label="Search tools"></label>
       </div>
+
+      <div class="features-grid" id="tool-grid">
+        <article class="tool-card" data-cat="write" data-name="ask anything ai chat conversational assistant with chat history, speech-to-text input and smart contextual answers." style="--c1:#1d4ed8;--c2:#3b82f6">
+          <span class="tool-num">01</span>
+          <div class="tool-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+          <h3 class="tool-title">Ask Anything AI Chat</h3>
+          <p class="tool-desc">Conversational assistant with chat history, speech-to-text input and smart contextual answers.</p>
+          <div class="tool-foot">
+            <span class="tool-tag">2 coins / request</span>
+            <button class="tool-view" type="button" data-shot="ai-chat">View screen <span aria-hidden="true">&rarr;</span></button>
+          </div>
+        </article>
+        <article class="tool-card" data-cat="write" data-name="multi-language translator translate text across 15 languages with auto-detect and one-tap reverse swap." style="--c1:#059669;--c2:#34d399">
+          <span class="tool-num">02</span>
+          <div class="tool-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 8l6 6M4 14l6-6 2-3M2 5h12M7 2h1M22 22l-5-10-5 10M14 18h6"/></svg></div>
+          <h3 class="tool-title">Multi-Language Translator</h3>
+          <p class="tool-desc">Translate text across 15 languages with auto-detect and one-tap reverse swap.</p>
+          <div class="tool-foot">
+            <span class="tool-tag">2 coins / request</span>
+            <button class="tool-view" type="button" data-shot="translator">View screen <span aria-hidden="true">&rarr;</span></button>
+          </div>
+        </article>
+        <article class="tool-card" data-cat="write" data-name="ai e-mail writer draft professional, sales or follow-up emails in a formal, casual or friendly tone." style="--c1:#db2777;--c2:#f472b6">
+          <span class="tool-num">03</span>
+          <div class="tool-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg></div>
+          <h3 class="tool-title">AI E-mail Writer</h3>
+          <p class="tool-desc">Draft professional, sales or follow-up emails in a formal, casual or friendly tone.</p>
+          <div class="tool-foot">
+            <span class="tool-tag">3 coins / request</span>
+            <button class="tool-view" type="button" data-shot="email">View screen <span aria-hidden="true">&rarr;</span></button>
+          </div>
+        </article>
+        <article class="tool-card" data-cat="write" data-name="social media growth engine high-engagement posts and viral hashtag sets for instagram, linkedin, x, tiktok and youtube." style="--c1:#ea580c;--c2:#fb923c">
+          <span class="tool-num">04</span>
+          <div class="tool-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg></div>
+          <h3 class="tool-title">Social Media Growth Engine</h3>
+          <p class="tool-desc">High-engagement posts and viral hashtag sets for Instagram, LinkedIn, X, TikTok and YouTube.</p>
+          <div class="tool-foot">
+            <span class="tool-tag">1-2 coins / request</span>
+            <button class="tool-view" type="button" data-shot="social">View screen <span aria-hidden="true">&rarr;</span></button>
+          </div>
+        </article>
+        <article class="tool-card" data-cat="write" data-name="script specialist viral youtube, tiktok and instagram scripts with a duration slider and hook breakdowns." style="--c1:#d97706;--c2:#fbbf24">
+          <span class="tool-num">05</span>
+          <div class="tool-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></div>
+          <h3 class="tool-title">Script Specialist</h3>
+          <p class="tool-desc">Viral YouTube, TikTok and Instagram scripts with a duration slider and hook breakdowns.</p>
+          <div class="tool-foot">
+            <span class="tool-tag">10 coins / request</span>
+            <button class="tool-view" type="button" data-shot="script">View screen <span aria-hidden="true">&rarr;</span></button>
+          </div>
+        </article>
+        <article class="tool-card" data-cat="write" data-name="ai grammar fixer fix grammar, spelling and style in one tap so every message reads polished." style="--c1:#ea580c;--c2:#fb923c">
+          <span class="tool-num">06</span>
+          <div class="tool-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg></div>
+          <h3 class="tool-title">AI Grammar Fixer</h3>
+          <p class="tool-desc">Fix grammar, spelling and style in one tap so every message reads polished.</p>
+          <div class="tool-foot">
+            <span class="tool-tag">Coin-based</span>
+          </div>
+        </article>
+        <article class="tool-card" data-cat="write" data-name="personal advice cv maker, gift ideas, birthday, anniversary and promotion messages written for you." style="--c1:#0891b2;--c2:#22d3ee">
+          <span class="tool-num">07</span>
+          <div class="tool-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.2 1 2.3h6c0-1.1.4-1.8 1-2.3A7 7 0 0 0 12 2z"/></svg></div>
+          <h3 class="tool-title">Personal Advice</h3>
+          <p class="tool-desc">CV maker, gift ideas, birthday, anniversary and promotion messages written for you.</p>
+          <div class="tool-foot">
+            <span class="tool-tag">Coin-based</span>
+            <button class="tool-view" type="button" data-shot="advice">View screen <span aria-hidden="true">&rarr;</span></button>
+          </div>
+        </article>
+        <article class="tool-card" data-cat="create" data-name="ai image generator turn text prompts into images, then download or share them instantly." style="--c1:#1d4ed8;--c2:#3b82f6">
+          <span class="tool-num">08</span>
+          <div class="tool-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></div>
+          <h3 class="tool-title">AI Image Generator</h3>
+          <p class="tool-desc">Turn text prompts into images, then download or share them instantly.</p>
+          <div class="tool-foot">
+            <span class="tool-tag">5 coins / request</span>
+            <button class="tool-view" type="button" data-shot="image-gen">View screen <span aria-hidden="true">&rarr;</span></button>
+          </div>
+        </article>
+        <article class="tool-card" data-cat="create" data-name="ai code generator generate python, dart, javascript, c++ and kotlin with dark syntax highlighting and one-tap copy." style="--c1:#1d4ed8;--c2:#3b82f6">
+          <span class="tool-num">09</span>
+          <div class="tool-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/></svg></div>
+          <h3 class="tool-title">AI Code Generator</h3>
+          <p class="tool-desc">Generate Python, Dart, JavaScript, C++ and Kotlin with dark syntax highlighting and one-tap copy.</p>
+          <div class="tool-foot">
+            <span class="tool-tag">5 coins / request</span>
+            <button class="tool-view" type="button" data-shot="code">View screen <span aria-hidden="true">&rarr;</span></button>
+          </div>
+        </article>
+        <article class="tool-card" data-cat="create" data-name="image describer describe any picture with detailed captions and accessibility-friendly alt text." style="--c1:#1d4ed8;--c2:#3b82f6">
+          <span class="tool-num">10</span>
+          <div class="tool-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></div>
+          <h3 class="tool-title">Image Describer</h3>
+          <p class="tool-desc">Describe any picture with detailed captions and accessibility-friendly alt text.</p>
+          <div class="tool-foot">
+            <span class="tool-tag">5 coins / request</span>
+          </div>
+        </article>
+        <article class="tool-card" data-cat="docs" data-name="image to text (ocr) extract text from photos, screenshots and scanned pages in seconds." style="--c1:#ea580c;--c2:#fb923c">
+          <span class="tool-num">11</span>
+          <div class="tool-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7V5a2 2 0 0 1 2-2h2M17 3h2a2 2 0 0 1 2 2v2M21 17v2a2 2 0 0 1-2 2h-2M7 21H5a2 2 0 0 1-2-2v-2M7 12h10"/></svg></div>
+          <h3 class="tool-title">Image to Text (OCR)</h3>
+          <p class="tool-desc">Extract text from photos, screenshots and scanned pages in seconds.</p>
+          <div class="tool-foot">
+            <span class="tool-tag">5 coins / request</span>
+          </div>
+        </article>
+        <article class="tool-card" data-cat="docs" data-name="pdf to text pull clean, structured text out of any pdf document." style="--c1:#7c3aed;--c2:#a78bfa">
+          <span class="tool-num">12</span>
+          <div class="tool-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h5"/></svg></div>
+          <h3 class="tool-title">PDF to Text</h3>
+          <p class="tool-desc">Pull clean, structured text out of any PDF document.</p>
+          <div class="tool-foot">
+            <span class="tool-tag">5 coins / request</span>
+            <button class="tool-view" type="button" data-shot="pdf">View screen <span aria-hidden="true">&rarr;</span></button>
+          </div>
+        </article>
+        <article class="tool-card" data-cat="docs" data-name="pdf summarizer executive bullet takeaways from long pdf documents." style="--c1:#d97706;--c2:#fbbf24">
+          <span class="tool-num">13</span>
+          <div class="tool-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg></div>
+          <h3 class="tool-title">PDF Summarizer</h3>
+          <p class="tool-desc">Executive bullet takeaways from long PDF documents.</p>
+          <div class="tool-foot">
+            <span class="tool-tag">5 coins / request</span>
+            <button class="tool-view" type="button" data-shot="pdf-summary">View screen <span aria-hidden="true">&rarr;</span></button>
+          </div>
+        </article>
+        <article class="tool-card" data-cat="docs" data-name="website summarizer paste any article or blog url to get key takeaways and highlights." style="--c1:#7c3aed;--c2:#a78bfa">
+          <span class="tool-num">14</span>
+          <div class="tool-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
+          <h3 class="tool-title">Website Summarizer</h3>
+          <p class="tool-desc">Paste any article or blog URL to get key takeaways and highlights.</p>
+          <div class="tool-foot">
+            <span class="tool-tag">5 coins / request</span>
+            <button class="tool-view" type="button" data-shot="website">View screen <span aria-hidden="true">&rarr;</span></button>
+          </div>
+        </article>
+        <article class="tool-card" data-cat="docs" data-name="compress pdf shrink large pdf files so they are easy to store and share." style="--c1:#db2777;--c2:#f472b6">
+          <span class="tool-num">15</span>
+          <div class="tool-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 14h6v6M20 10h-6V4M14 10l7-7M3 21l7-7"/></svg></div>
+          <h3 class="tool-title">Compress PDF</h3>
+          <p class="tool-desc">Shrink large PDF files so they are easy to store and share.</p>
+          <div class="tool-foot">
+            <span class="tool-tag">Coin-based</span>
+          </div>
+        </article>
+        <article class="tool-card" data-cat="docs" data-name="pdf maker create a ready-to-share pdf from your text and images." style="--c1:#0891b2;--c2:#22d3ee">
+          <span class="tool-num">16</span>
+          <div class="tool-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M12 18v-6M9 15h6"/></svg></div>
+          <h3 class="tool-title">PDF Maker</h3>
+          <p class="tool-desc">Create a ready-to-share PDF from your text and images.</p>
+          <div class="tool-foot">
+            <span class="tool-tag">Coin-based</span>
+          </div>
+        </article>
+        <article class="tool-card" data-cat="docs" data-name="word to pdf convert word documents to pdf with one tap." style="--c1:#dc2626;--c2:#f87171">
+          <span class="tool-num">17</span>
+          <div class="tool-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 1l4 4-4 4"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><path d="M7 23l-4-4 4-4"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg></div>
+          <h3 class="tool-title">Word to PDF</h3>
+          <p class="tool-desc">Convert Word documents to PDF with one tap.</p>
+          <div class="tool-foot">
+            <span class="tool-tag">Coin-based</span>
+          </div>
+        </article>
+        <article class="tool-card" data-cat="media" data-name="video to text transcribe mp4 and mov videos into formatted notes and summaries." style="--c1:#059669;--c2:#34d399">
+          <span class="tool-num">18</span>
+          <div class="tool-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg></div>
+          <h3 class="tool-title">Video to Text</h3>
+          <p class="tool-desc">Transcribe MP4 and MOV videos into formatted notes and summaries.</p>
+          <div class="tool-foot">
+            <span class="tool-tag">5 coins / request</span>
+            <button class="tool-view" type="button" data-shot="video">View screen <span aria-hidden="true">&rarr;</span></button>
+          </div>
+        </article>
+        <article class="tool-card" data-cat="media" data-name="audio summarizer summarize mp3, wav and m4a recordings into key points." style="--c1:#059669;--c2:#34d399">
+          <span class="tool-num">19</span>
+          <div class="tool-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2M12 19v4"/></svg></div>
+          <h3 class="tool-title">Audio Summarizer</h3>
+          <p class="tool-desc">Summarize MP3, WAV and M4A recordings into key points.</p>
+          <div class="tool-foot">
+            <span class="tool-tag">5 coins / request</span>
+          </div>
+        </article>
+        <article class="tool-card" data-cat="util" data-name="ai math solver type or scan equations and get step-by-step solutions for algebra, calculus and physics." style="--c1:#db2777;--c2:#f472b6">
+          <span class="tool-num">20</span>
+          <div class="tool-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01M16 18h.01"/></svg></div>
+          <h3 class="tool-title">AI Math Solver</h3>
+          <p class="tool-desc">Type or scan equations and get step-by-step solutions for algebra, calculus and physics.</p>
+          <div class="tool-foot">
+            <span class="tool-tag">5 coins / request</span>
+            <button class="tool-view" type="button" data-shot="math">View screen <span aria-hidden="true">&rarr;</span></button>
+          </div>
+        </article>
+        <article class="tool-card" data-cat="util" data-name="personal notes notes manager with priority tags to keep your ideas organized." style="--c1:#7c3aed;--c2:#a78bfa">
+          <span class="tool-num">21</span>
+          <div class="tool-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div>
+          <h3 class="tool-title">Personal Notes</h3>
+          <p class="tool-desc">Notes manager with priority tags to keep your ideas organized.</p>
+          <div class="tool-foot">
+            <span class="tool-tag">Free feature</span>
+            <button class="tool-view" type="button" data-shot="notes">View screen <span aria-hidden="true">&rarr;</span></button>
+          </div>
+        </article>
+        <article class="tool-card" data-cat="util" data-name="password generator create strong passwords with a live strength meter." style="--c1:#dc2626;--c2:#f87171">
+          <span class="tool-num">22</span>
+          <div class="tool-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 2l-2 2m-7.6 7.6a5.5 5.5 0 1 1-7.8 7.8 5.5 5.5 0 0 1 7.8-7.8zm0 0L15.5 7.5m0 0 3 3L22 7l-3-3m-3.5 3.5L19 4"/></svg></div>
+          <h3 class="tool-title">Password Generator</h3>
+          <p class="tool-desc">Create strong passwords with a live strength meter.</p>
+          <div class="tool-foot">
+            <span class="tool-tag">Free feature</span>
+            <button class="tool-view" type="button" data-shot="password">View screen <span aria-hidden="true">&rarr;</span></button>
+          </div>
+        </article>
+      </div>
+      <p class="tool-empty" id="tool-empty" hidden>No tools match your search.</p>
     </div>
   </section>
 
@@ -1270,7 +1450,7 @@
             <span>Tooly AI</span>
           </a>
           <p class="footer-desc">
-            The ultimate multi-tool AI assistant for Android and iOS powered by Flutter, Firebase, and multi-model generative AI.
+            The ultimate multi-tool AI assistant for Android and iOS built with Flutter and Firebase, powered by multi-provider AI.
           </p>
         </div>
 
@@ -1281,7 +1461,7 @@
             <li><a href="#features">AI Code Generator</a></li>
             <li><a href="#features">Script Specialist</a></li>
             <li><a href="#features">AI Math Solver</a></li>
-            <li><a href="#features">PDF &amp; Media OCR</a></li>
+            <li><a href="#features">PDF &amp; Media Tools</a></li>
           </ul>
         </div>
 
@@ -1308,7 +1488,7 @@
 
       <div class="footer-bottom">
         <span>© 2026 Tooly AI. Created by Vertex Station. All rights reserved.</span>
-        <span>Built with Flutter &amp; Generative AI</span>
+        <span>Built with Flutter</span>
       </div>
     </div>
   </footer>
@@ -1415,8 +1595,38 @@
         tilt.addEventListener('mousemove',function(e){var r=tilt.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;dev.style.transform='rotateY('+x*14+'deg) rotateX('+(-y*10)+'deg)'});
         tilt.addEventListener('mouseleave',function(){dev.style.transform=''});
       }
+      window.scShow=function(name){var i=S.findIndex(function(s){return s.src==="shots/"+name+".webp"});if(i>-1){go(i);restart();}};
       go(0);restart();
     })();
+
+    // AI tools: filters, search, spotlight, reveal, jump to screenshot
+    (function(){
+      var cards=[].slice.call(document.querySelectorAll('.tool-card')),f='all',q='';
+      function apply(){
+        var n=0;cards.forEach(function(c){
+          var ok=(f==='all'||c.dataset.cat===f)&&(!q||c.dataset.name.indexOf(q)>-1);
+          c.classList.toggle('hide',!ok);if(ok){n++;c.classList.remove('in');void c.offsetWidth;c.classList.add('in');}
+        });
+        document.getElementById('tool-empty').hidden=n>0;
+      }
+      document.getElementById('tool-filters').addEventListener('click',function(e){
+        var b=e.target.closest('.tool-chip');if(!b)return;f=b.dataset.filter;
+        document.querySelectorAll('.tool-chip').forEach(function(x){x.classList.toggle('active',x===b)});apply();
+      });
+      document.getElementById('tool-search').addEventListener('input',function(e){q=e.target.value.trim().toLowerCase();apply()});
+      cards.forEach(function(c){
+        c.addEventListener('mousemove',function(e){var r=c.getBoundingClientRect();c.style.setProperty('--mx',(e.clientX-r.left)+'px');c.style.setProperty('--my',(e.clientY-r.top)+'px')});
+      });
+      document.getElementById('tool-grid').addEventListener('click',function(e){
+        var b=e.target.closest('.tool-view');if(!b||!window.scShow)return;
+        window.scShow(b.dataset.shot);document.getElementById('showcase').scrollIntoView({behavior:'smooth',block:'center'});
+      });
+      if('IntersectionObserver' in window){
+        var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){var i=cards.indexOf(en.target);setTimeout(function(){en.target.classList.add('in')},(i%6)*60);io.unobserve(en.target)}})},{threshold:.1});
+        cards.forEach(function(c){io.observe(c)});
+      }else cards.forEach(function(c){c.classList.add('in')});
+    })();
+
   </script>
 </body>
 </html>
