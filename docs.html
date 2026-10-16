@@ -1,4 +1,4 @@
-<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><title>Tooly AI Documentation – Flutter AI App Setup, Firebase, AdMob &amp; Store Submission</title><meta name="description" content="Step-by-step Tooly AI documentation: install Flutter, rename the app, set up Firebase, AI API keys, AdMob, in-app purchases and publish to Google Play and the App Store."><meta name="robots" content="index, follow"><link rel="canonical" href="https://toolyai.vertexstation.com/docs"><meta name="theme-color" content="#3b5bdb"><link rel="icon" type="image/svg+xml" href="favicon.svg"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<!doctype html><html lang="en"><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><title>Tooly AI Documentation – Flutter AI App Setup, Firebase, AdMob &amp; Store Submission</title><meta name="description" content="Tooly AI setup documentation: Flutter install, Firebase (Auth, Firestore, Cloud Functions), AI provider keys, security rules, AdMob, in-app purchases, release signing, troubleshooting and store submission."><meta name="robots" content="index, follow"><link rel="canonical" href="https://toolyai.vertexstation.com/docs"><meta name="theme-color" content="#3b5bdb"><link rel="icon" type="image/svg+xml" href="favicon.svg"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
 
 <style>
   /* ============================================================
@@ -620,30 +620,31 @@
 </button>
 
 <div class="layout">
-  <!-- LEFT NAV -->
   <nav class="nav" id="nav">
-    <a href="index.html" class="nav-brand" title="Back to Tooly AI home">
-      <div class="nav-brand-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-      </div>
+    <a href="#introduction" class="nav-brand">
+      <div class="nav-brand-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
       <span class="nav-brand-name">Tooly AI</span>
     </a>
-
-    <div class="nav-section">
-      <span class="nav-section-label">Tooly AI</span>
-      <ul class="nav-items">
-        <li><a href="index.html"><span class="nav-dot"></span>&larr; Back to Home</a></li>
-        <li><a href="index.html#features"><span class="nav-dot"></span>Features</a></li>
-        <li><a href="index.html#monetization"><span class="nav-dot"></span>Monetization</a></li>
-      </ul>
-    </div>
-
     <div class="nav-section">
       <span class="nav-section-label">Getting Started</span>
       <ul class="nav-items">
         <li><a href="#introduction"><span class="nav-dot"></span>Introduction</a></li>
         <li><a href="#requirements"><span class="nav-dot"></span>Requirements</a></li>
-        <li><a href="#installation"><span class="nav-dot"></span>Installation</a></li>
+        <li><a href="#setup-checklist"><span class="nav-dot"></span>Setup Checklist</a></li>
+        <li><a href="#installation"><span class="nav-dot"></span>Quick Start</a></li>
+        <li><a href="#demo"><span class="nav-dot"></span>Demo Account</a></li>
+        <li><a href="#screenshots"><span class="nav-dot"></span>Screenshots</a></li>
+      </ul>
+    </div>
+
+    <div class="nav-section">
+      <span class="nav-section-label">Firebase Backend</span>
+      <ul class="nav-items">
+        <li><a href="#firebase"><span class="nav-dot"></span>Firebase Setup</a></li>
+        <li><a href="#functions"><span class="nav-dot"></span>Cloud Functions &amp; AI Providers</a></li>
+        <li><a href="#rules"><span class="nav-dot"></span>Firestore Rules</a></li>
+        <li><a href="#security"><span class="nav-dot"></span>Security Model</a></li>
+        <li><a href="#costs"><span class="nav-dot"></span>Costs &amp; Responsibility</a></li>
       </ul>
     </div>
 
@@ -654,12 +655,6 @@
         <li><a href="#app-icon"><span class="nav-dot"></span>App Icon</a></li>
         <li><a href="#splash-logo"><span class="nav-dot"></span>Splash Logo</a></li>
         <li><a href="#package-name"><span class="nav-dot"></span>Package Name</a></li>
-      </ul>
-    </div>
-
-    <div class="nav-section">
-      <span class="nav-section-label">Customization</span>
-      <ul class="nav-items">
         <li><a href="#app-strings"><span class="nav-dot"></span>App Strings</a></li>
         <li><a href="#brand-colors"><span class="nav-dot"></span>Brand Colors</a></li>
         <li><a href="#onboarding"><span class="nav-dot"></span>Onboarding</a></li>
@@ -667,18 +662,13 @@
     </div>
 
     <div class="nav-section">
-      <span class="nav-section-label">Features &amp; Tools</span>
+      <span class="nav-section-label">Features &amp; Compliance</span>
       <ul class="nav-items">
         <li><a href="#ai-tools"><span class="nav-dot"></span>AI Tools &amp; Features</a></li>
-      </ul>
-    </div>
-
-    <div class="nav-section">
-      <span class="nav-section-label">Backend &amp; APIs</span>
-      <ul class="nav-items">
-        <li><a href="#firebase"><span class="nav-dot"></span>Firebase Setup</a></li>
-        <li><a href="#ai-keys"><span class="nav-dot"></span>AI API Keys</a></li>
-        <li><a href="#architecture"><span class="nav-dot"></span>Architecture &amp; Services</a></li>
+        <li><a href="#safety"><span class="nav-dot"></span>Content Safety &amp; Reporting</a></li>
+        <li><a href="#account-deletion"><span class="nav-dot"></span>Account Deletion</a></li>
+        <li><a href="#third-party"><span class="nav-dot"></span>Third-Party Services</a></li>
+        <li><a href="#ai-disclosure"><span class="nav-dot"></span>AI Disclosure</a></li>
       </ul>
     </div>
 
@@ -693,110 +683,175 @@
     <div class="nav-section">
       <span class="nav-section-label">Release</span>
       <ul class="nav-items">
+        <li><a href="#signing"><span class="nav-dot"></span>Release Signing</a></li>
         <li><a href="#submission"><span class="nav-dot"></span>Submission</a></li>
+        <li><a href="#troubleshooting"><span class="nav-dot"></span>Troubleshooting &amp; FAQ</a></li>
+        <li><a href="#changelog"><span class="nav-dot"></span>Changelog</a></li>
         <li><a href="#support"><span class="nav-dot"></span>Support</a></li>
       </ul>
     </div>
+
   </nav>
 
-  <!-- MAIN CONTENT -->
   <main class="content" id="main">
 
     <section id="introduction">
-      <div class="page-eyebrow">
-        <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-        Documentation
-      </div>
-      <h1>Tooly AI <span class="badge">v1.0.1</span></h1>
-      <p class="lead">A complete guide to setting up, customizing, and publishing your AI-powered multi-tool Flutter application — from first run to store submission.</p>
-
-      <p>Tooly AI is a production-ready Flutter app featuring 15+ AI-powered tools including a chat assistant, image generator, OCR image-to-text converter, AI math solver, grammar checker, PDF maker &amp; summarizer, code generator, multi-language translator, email composer, and more. All configuration lives in a small set of centralized files, so you can rebrand and launch quickly.</p>
-
-      <div class="callout callout-info">
-        <svg class="callout-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-        <div><p><strong>What's included:</strong> Multi-provider AI with automatic fallback (Gemini, Groq, Cohere, Hugging Face, OpenAI, Grok), Firebase Auth, AdMob, a coin-based IAP system, 15 languages, and dark/light theme support.</p></div>
-      </div>
-
-      <p>The app follows a clean BLoC architecture with feature-based modules and utility tool views. Feature-based tools live in <span class="filepath">lib/features/</span> and specialized tools live in <span class="filepath">lib/src/presentation/view/pages/tools/</span>, making it straightforward to add, modify, or remove tools.</p>
+      <div class="page-eyebrow"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>Documentation</div>
+      <h1>Tooly AI <span class="badge">v1.1.0</span></h1>
+      <p class="lead">A Flutter AI toolkit for Android and iOS with a complete <strong>Firebase-only backend</strong>: Firebase Authentication, Cloud Firestore and Cloud Functions. No separate server is required.</p>
+      <p>Tooly AI contains 20 tools: AI chat, translator, code/email/script/social-post/hashtag/CV generators, image generation, AI math solver, grammar fixer, image/PDF/audio/video/website analysis, PDF compression, PDF maker, document-to-PDF conversion, password generator and private notes. Features are paid for with an in-app coin balance.</p>
+      <div class="callout callout-info"><svg class="callout-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg><div><p><strong>Architecture in one sentence:</strong> the app never contains an AI key or credits coins itself. Every AI request, coin change, purchase verification and account deletion is performed by Cloud Functions (<code>functions/</code>), protected by Firestore security rules (<code>firestore.rules</code>).</p></div></div>
+      <table class="req-table"><thead><tr><th>Layer</th><th>Technology</th><th>Where</th></tr></thead><tbody><tr><td>Mobile app</td><td>Flutter, BLoC, GetIt</td><td><span class="filepath">lib/</span></td></tr><tr><td>Authentication</td><td>Firebase Auth (Google, Email/Password)</td><td><span class="filepath">lib/services/firebase_service.dart</span></td></tr><tr><td>Database</td><td>Cloud Firestore + security rules</td><td><span class="filepath">firestore.rules</span></td></tr><tr><td>Backend logic</td><td>Cloud Functions for Firebase (Node.js 22)</td><td><span class="filepath">functions/index.js</span></td></tr><tr><td>AI models</td><td>Google Gemini, OpenAI, xAI Grok (called only from Cloud Functions)</td><td><span class="filepath">functions/config.js</span></td></tr><tr><td>Purchases</td><td>Google Play Billing / StoreKit, verified server-side</td><td><span class="filepath">lib/services/purchases_service.dart</span></td></tr></tbody></table>
     </section>
 
-    <!-- ── REQUIREMENTS ─────────────────────────────────── -->
     <section id="requirements">
       <h2>Requirements</h2>
-      <p>Verify your local environment before starting. The app supports modern Flutter stable channels (configured in <span class="filepath">pubspec.yaml</span> as <code>sdk: '>=3.11.0 &lt;4.0.0'</code> and <code>flutter: '>=3.38.1'</code>).</p>
 
-      <table class="req-table">
-        <thead>
-          <tr><th>Tool</th><th>Version</th><th>Notes</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>Flutter SDK</td><td><code>&gt;=3.38.1</code></td><td>Latest stable channel recommended</td></tr>
-          <tr><td>Dart SDK</td><td><code>&gt;=3.11.0 &lt;4.0.0</code></td><td>Bundled with Flutter 3.38+</td></tr>
-          <tr><td>Java</td><td><code>17</code></td><td>Required for Android Gradle</td></tr>
-          <tr><td>Android SDK</td><td>min <code>21</code></td><td>Android 5.0+</td></tr>
-          <tr><td>iOS Deployment Target</td><td><code>15.0</code></td><td>Required by the Firebase SDK</td></tr>
-          <tr><td>Xcode</td><td><code>15+</code></td><td>For iOS builds</td></tr>
-        </tbody>
-      </table>
+      <p>Versions below match <span class="filepath">pubspec.yaml</span>, <span class="filepath">android/app/build.gradle</span> and <span class="filepath">functions/package.json</span>.</p>
+      <table class="req-table"><thead><tr><th>Tool</th><th>Version</th><th>Notes</th></tr></thead><tbody><tr><td>Flutter SDK</td><td><code>&gt;=3.38.1</code> (tested with 3.47)</td><td><code>flutter: &#39;&gt;=3.38.1&#39;</code> in pubspec.yaml</td></tr><tr><td>Dart SDK</td><td><code>&gt;=3.11.0 &lt;4.0.0</code></td><td>Bundled with Flutter</td></tr><tr><td>Java</td><td>17</td><td>Android Gradle</td></tr><tr><td>Android</td><td>compileSdk <code>36</code>, targetSdk <code>36</code>, minSdk <code>24</code></td><td>Declared explicitly in android/app/build.gradle</td></tr><tr><td>iOS</td><td>Deployment target <code>15.0</code>, Xcode 15+</td><td>CocoaPods required (macOS only)</td></tr><tr><td>Node.js</td><td>22</td><td>Only to deploy Cloud Functions</td></tr><tr><td>Firebase CLI</td><td>latest (<code>npm i -g firebase-tools</code>)</td><td>Deploy rules &amp; functions</td></tr><tr><td>Firebase plan</td><td><strong>Blaze (pay-as-you-go)</strong></td><td>Required by Cloud Functions (free quota included)</td></tr></tbody></table>
+      <h3>Dependency usage</h3>
+      <p>Every package in <span class="filepath">pubspec.yaml</span> is used by the app. Key ones: <code>firebase_core / firebase_auth / cloud_firestore / cloud_functions / firebase_app_check</code> (backend), <code>google_sign_in</code>, <code>in_app_purchase</code> + <code>in_app_purchase_android</code>, <code>google_mobile_ads</code>, <code>pdf</code> + <code>pdfx</code> (PDF Maker, Compress PDF), <code>archive</code> (DOCX text extraction), <code>file_picker</code>, <code>image_picker</code>, <code>share_plus</code>, <code>flutter_bloc</code>, <code>get_it</code>. The app is <strong>mobile only (Android &amp; iOS)</strong>: desktop and web folders are not included.</p>
 
-      <div class="callout callout-tip">
-        <svg class="callout-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-        <div><p>SDK constraints are configured in <span class="filepath">pubspec.yaml</span>. Run <code>flutter doctor</code> in your terminal to verify all toolchain requirements are satisfied before proceeding.</p></div>
-      </div>
     </section>
 
-    <!-- ── INSTALLATION ─────────────────────────────────── -->
+    <section id="setup-checklist">
+      <h2>Setup Checklist</h2>
+      <p>Follow these steps in order. Each step links to its detailed section. A first complete setup takes about 1-2 hours.</p>
+      <table class="req-table"><thead><tr><th>#</th><th>Step</th><th>Where</th></tr></thead><tbody>
+        <tr><td>1</td><td>Install Flutter, Java 17, Android Studio / Xcode, Node.js 22 and the Firebase CLI (<code>npm i -g firebase-tools</code>)</td><td><a href="#requirements">Requirements</a></td></tr>
+        <tr><td>2</td><td>Rename the package / bundle ID, app name and icon (do this <em>before</em> registering apps in Firebase)</td><td><a href="#package-name">Package Name</a>, <a href="#app-name">App Name</a>, <a href="#app-icon">App Icon</a></td></tr>
+        <tr><td>3</td><td>Create the Firebase project (Blaze plan), enable Google + Email/Password sign-in, create Firestore</td><td><a href="#firebase">Firebase Setup</a></td></tr>
+        <tr><td>4</td><td>Register the Android and iOS apps, add SHA-1/SHA-256, download <code>google-services.json</code> and <code>GoogleService-Info.plist</code>, set the Google Sign-In URL scheme</td><td><a href="#firebase">Firebase Setup</a></td></tr>
+        <tr><td>5</td><td>Deploy Firestore rules and indexes</td><td><a href="#rules">Firestore Rules</a></td></tr>
+        <tr><td>6</td><td>Get AI keys, store them as secrets, create <code>functions/.env.&lt;project-id&gt;</code>, deploy Cloud Functions</td><td><a href="#functions">Cloud Functions</a></td></tr>
+        <tr><td>7</td><td>Run the app: <code>flutter pub get</code>, <code>flutter run</code> (iOS: <code>pod install</code> first)</td><td><a href="#installation">Quick Start</a></td></tr>
+        <tr><td>8</td><td>Create the demo user and test every tool, image generation, account deletion and reporting</td><td><a href="#demo">Demo Account</a></td></tr>
+        <tr><td>9</td><td>AdMob: replace test IDs; In-App Purchases: create the 5 products, connect Play / App Store verification</td><td><a href="#admob">AdMob</a>, <a href="#iap">In-App Purchases</a></td></tr>
+        <tr><td>10</td><td>Enable App Check, set billing budgets and alerts</td><td><a href="#firebase">App Check</a>, <a href="#costs">Costs</a></td></tr>
+        <tr><td>11</td><td>Release signing, privacy policy, store forms, upload</td><td><a href="#signing">Release Signing</a>, <a href="#submission">Submission</a></td></tr>
+      </tbody></table>
+    </section>
+
     <section id="installation">
-      <h2>Installation</h2>
-      <p>After extracting the project source code, open the root directory in your favorite editor:</p>
+      <h2>Quick Start</h2>
 
-      <div class="steps">
-        <div class="step">
-          <div class="step-num">1</div>
-          <div class="step-body">
-            <p>Open <strong>Android Studio</strong> or <strong>VS Code</strong> and select the project root directory.</p>
-          </div>
-        </div>
-        <div class="step">
-          <div class="step-num">2</div>
-          <div class="step-body">
-            <p>Open the integrated terminal and fetch all dependencies:</p>
-            <div class="code-block is-terminal">
-              <div class="code-block-header">
-                <span class="code-block-title">pubspec.yaml</span>
-                <button class="copy-btn" data-code="flutter pub get">
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-                  Copy
-                </button>
-              </div>
-              <pre><code>flutter pub get</code></pre>
-            </div>
-          </div>
-        </div>
-        <div class="step">
-          <div class="step-num">3</div>
-          <div class="step-body">
-            <p>Connect a physical device or start an emulator, then run the app:</p>
-            <div class="code-block is-terminal">
-              <div class="code-block-header">
-                <span class="code-block-title">Terminal</span>
-                <button class="copy-btn" data-code="flutter run">
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-                  Copy
-                </button>
-              </div>
-              <pre><code>flutter run</code></pre>
-            </div>
-          </div>
-        </div>
-      </div>
+      <div class="steps"><div class="step"><div class="step-num">1</div><div class="step-body"><p>Create and configure your Firebase project first - see <a href="#firebase">Firebase Setup</a>.</p></div></div><div class="step"><div class="step-num">2</div><div class="step-body"><p>Copy your own Firebase config files into the project (they are git-ignored; templates are provided):</p><ul class="doc-list"><li><span class="filepath">android/app/google-services.json</span> (template: <code>google-services.json.example</code>)</li><li><span class="filepath">ios/Runner/GoogleService-Info.plist</span> (template: <code>GoogleService-Info.plist.example</code>)</li></ul></div></div><div class="step"><div class="step-num">3</div><div class="step-body"><p>Install dependencies and run:</p><div class="code-block is-terminal"><div class="code-block-header"><span class="code-block-title">Terminal</span><button class="copy-btn" data-code="flutter pub get&#10;flutter run"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy</button></div><pre><code>flutter pub get
+flutter run</code></pre></div></div></div><div class="step"><div class="step-num">4</div><div class="step-body"><p><strong>iOS only</strong> (on a Mac) - generate the CocoaPods lock file and pods, then open the workspace:</p><div class="code-block is-terminal"><div class="code-block-header"><span class="code-block-title">Terminal</span><button class="copy-btn" data-code="cd ios&#10;pod install --repo-update&#10;cd ..&#10;open ios/Runner.xcworkspace"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy</button></div><pre><code>cd ios
+pod install --repo-update
+cd ..
+open ios/Runner.xcworkspace</code></pre></div><p>In Xcode select your own <strong>Team</strong> under <em>Signing &amp; Capabilities</em> (the project ships with no team ID) and enable the <em>In-App Purchase</em> capability.</p></div></div></div>
+      <div class="callout callout-warn"><svg class="callout-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg><div><p>The Android build fails with "File google-services.json is missing" until you add your own file. This is intentional: the project ships without any personal Firebase configuration.</p></div></div>
 
-      <div class="callout callout-warn">
-        <svg class="callout-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-        <div><p>The app requires a valid <span class="filepath">android/app/google-services.json</span> (Android) and <span class="filepath">ios/Runner/GoogleService-Info.plist</span> (iOS) to start Firebase services. See the <a href="#firebase">Firebase Setup</a> section before running for the first time.</p></div>
+    </section>
+
+    <section id="demo">
+      <h2>Demo Account</h2>
+
+      <p>The app signs in with <strong>Google</strong> or <strong>Email / Password</strong> (<em>Welcome screen &rarr; Sign in with email</em>). To let reviewers/testers try the app without a Google account, create a demo user in <em>Firebase console &rarr; Authentication &rarr; Users &rarr; Add user</em>.</p>
+      <table class="req-table"><thead><tr><th>Field</th><th>Example (create it in YOUR Firebase project)</th></tr></thead><tbody><tr><td>Email</td><td><code>demo@yourdomain.com</code></td></tr><tr><td>Password</td><td><code>choose-a-strong-password</code></td></tr></tbody></table>
+      <p>On first login the backend automatically creates the wallet with <strong>20 free coins</strong>. To give the demo user more coins, edit <code>users/&lt;uid&gt;.coins</code> in the Firestore console (only the Firebase console / Admin SDK can change coins). Put these credentials in the <em>Demo Instructions</em> section of your Envato item description.</p>
+      <div class="callout callout-warn"><svg class="callout-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg><div><p>Never publish a demo password that belongs to a real person, and never reuse it. Use a dedicated demo user and rotate the password if it is abused.</p></div></div>
+
+    </section>
+
+    <section id="screenshots">
+      <h2>Screenshots</h2>
+      <p>Main screens of the app (files in <span class="filepath">documentation/screenshots/</span>).</p>
+      <div class="tools-grid">
+        <div class="tool-card"><div class="tool-card-title">Onboarding</div><img src="shots/onboard.webp" alt="Onboarding" loading="lazy" style="border:1px solid var(--border);border-radius:10px;margin-top:8px"></div>
+        <div class="tool-card"><div class="tool-card-title">Sign-in</div><img src="shots/login.webp" alt="Sign-in" loading="lazy" style="border:1px solid var(--border);border-radius:10px;margin-top:8px"></div>
+        <div class="tool-card"><div class="tool-card-title">All tools</div><img src="shots/all-tools.webp" alt="All tools" loading="lazy" style="border:1px solid var(--border);border-radius:10px;margin-top:8px"></div>
+        <div class="tool-card"><div class="tool-card-title">Translator</div><img src="shots/translator.webp" alt="Translator" loading="lazy" style="border:1px solid var(--border);border-radius:10px;margin-top:8px"></div>
+        <div class="tool-card"><div class="tool-card-title">Image generator</div><img src="shots/image-gen.webp" alt="Image generator" loading="lazy" style="border:1px solid var(--border);border-radius:10px;margin-top:8px"></div>
+        <div class="tool-card"><div class="tool-card-title">AI Math Solver</div><img src="shots/math.webp" alt="AI Math Solver" loading="lazy" style="border:1px solid var(--border);border-radius:10px;margin-top:8px"></div>
+        <div class="tool-card"><div class="tool-card-title">Website Summarizer</div><img src="shots/website.webp" alt="Website Summarizer" loading="lazy" style="border:1px solid var(--border);border-radius:10px;margin-top:8px"></div>
+        <div class="tool-card"><div class="tool-card-title">Password Generator</div><img src="shots/password.webp" alt="Password Generator" loading="lazy" style="border:1px solid var(--border);border-radius:10px;margin-top:8px"></div>
       </div>
     </section>
 
+    <section id="firebase">
+      <h2>Firebase Setup</h2>
+
+      <p>All backend features use Firebase only. Follow these steps once.</p>
+      <div class="steps"><div class="step"><div class="step-num">1</div><div class="step-body"><p>Create a project at <a href="https://console.firebase.google.com" target="_blank">console.firebase.google.com</a> and upgrade it to the <strong>Blaze</strong> plan (needed for Cloud Functions; the free quota covers development and small apps).</p></div></div><div class="step"><div class="step-num">2</div><div class="step-body"><p><strong>Authentication &rarr; Sign-in method:</strong> enable <em>Google</em> (select a project support e-mail when asked) and <em>Email/Password</em>.</p></div></div><div class="step"><div class="step-num">3</div><div class="step-body"><p><strong>Add the Android app</strong> with your package name (default <code>com.example.toolyai</code>), add your SHA-1 and SHA-256 fingerprints (debug <em>and</em> release, and the Play App Signing key), download <span class="filepath">google-services.json</span> to <span class="filepath">android/app/</span>.</p></div></div><div class="step"><div class="step-num">4</div><div class="step-body"><p><strong>Add the iOS app</strong> with your bundle ID, download <span class="filepath">GoogleService-Info.plist</span> to <span class="filepath">ios/Runner/</span> (add it to the Runner target in Xcode) and copy its <code>REVERSED_CLIENT_ID</code> into the <code>CFBundleURLSchemes</code> entry of <span class="filepath">ios/Runner/Info.plist</span> (this is the Google Sign-In URL scheme).</p></div></div><div class="step"><div class="step-num">5</div><div class="step-body"><p><strong>Firestore Database:</strong> create a database in <em>production mode</em>. Choose a location close to your users (it cannot be changed later). The required indexes are deployed from <code>firestore.indexes.json</code>.</p></div></div><div class="step"><div class="step-num">6</div><div class="step-body"><p>Log in and select your project in the project root:</p><div class="code-block is-terminal"><div class="code-block-header"><span class="code-block-title">Terminal</span><button class="copy-btn" data-code="firebase login&#10;firebase use --add"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy</button></div><pre><code>firebase login
+firebase use --add</code></pre></div></div></div><div class="step"><div class="step-num">7</div><div class="step-body"><p>Deploy the security rules and indexes:</p><div class="code-block is-terminal"><div class="code-block-header"><span class="code-block-title">Terminal</span><button class="copy-btn" data-code="firebase deploy --only firestore"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy</button></div><pre><code>firebase deploy --only firestore</code></pre></div></div></div><div class="step"><div class="step-num">8</div><div class="step-body"><p>Deploy the Cloud Functions - see <a href="#functions">Cloud Functions &amp; AI Providers</a>.</p></div></div></div>
+      <h3>Firestore data model</h3>
+      <table class="req-table"><thead><tr><th>Collection</th><th>Written by</th><th>Content</th></tr></thead><tbody><tr><td><code>users/{uid}</code></td><td>Cloud Functions only</td><td>profile, <code>coins</code>, totals, <code>referralCode</code>, <code>hasPurchasedPlan</code>, daily-bonus / rate-limit counters</td></tr><tr><td><code>users/{uid}/notes/{id}</code></td><td>Owner (app)</td><td>Personal Notes (validated by rules)</td></tr><tr><td><code>transactions/{id}</code></td><td>Cloud Functions only</td><td>coin ledger entries (read-only for the owner)</td></tr><tr><td><code>imageCharges/{id}</code></td><td>Cloud Functions only</td><td>image generation charges (prompt URLs, refund state)</td></tr><tr><td><code>purchases/{orderId}</code></td><td>Cloud Functions only</td><td>verified store orders (prevents receipt replay)</td></tr><tr><td><code>reports/{id}</code></td><td>Owner (create-only)</td><td>user reports of AI content</td></tr></tbody></table>
+      <h3>App Check (recommended)</h3>
+      <p>Firebase App Check makes sure only your genuine app can call your functions. In <em>Firebase console &rarr; App Check</em> register <strong>Play Integrity</strong> (Android) and <strong>App Attest / DeviceCheck</strong> (iOS). During development run the app once, copy the <em>debug token</em> from the log and add it under <em>Manage debug tokens</em>. When ready, enforce it by setting the function parameter <code>ENFORCE_APP_CHECK=true</code> and redeploying.</p>
+
+    </section>
+
+    <section id="functions">
+      <h2>Cloud Functions &amp; AI Providers</h2>
+
+      <p>All server code is in <span class="filepath">functions/</span>. Provider API keys are stored in <strong>Firebase Secret Manager</strong> and exist nowhere in the app. <strong>Only three providers are supported: Google Gemini, OpenAI and xAI Grok.</strong></p>
+      <div class="steps"><div class="step"><div class="step-num">1</div><div class="step-body"><p>Install dependencies:</p><div class="code-block is-terminal"><div class="code-block-header"><span class="code-block-title">Terminal</span><button class="copy-btn" data-code="cd functions&#10;npm install&#10;cd .."><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy</button></div><pre><code>cd functions
+npm install
+cd ..</code></pre></div></div></div><div class="step"><div class="step-num">2</div><div class="step-body"><p>Store your provider keys as secrets. <strong>Gemini is the primary provider</strong> and is required. For a provider you do not use enter the value <code>disabled</code>:</p><div class="code-block is-terminal"><div class="code-block-header"><span class="code-block-title">Terminal</span><button class="copy-btn" data-code="firebase functions:secrets:set GEMINI_API_KEY&#10;firebase functions:secrets:set OPENAI_API_KEY&#10;firebase functions:secrets:set XAI_API_KEY&#10;firebase functions:secrets:set APPLE_KEY_P8"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy</button></div><pre><code>firebase functions:secrets:set GEMINI_API_KEY
+firebase functions:secrets:set OPENAI_API_KEY
+firebase functions:secrets:set XAI_API_KEY
+firebase functions:secrets:set APPLE_KEY_P8</code></pre></div><p>Get keys at <a href="https://aistudio.google.com/app/apikey" target="_blank">Google AI Studio</a>, <a href="https://platform.openai.com/api-keys" target="_blank">OpenAI</a> and <a href="https://console.x.ai" target="_blank">xAI</a>. <code>APPLE_KEY_P8</code> is the contents of your App Store Connect In-App Purchase key (.p8), or <code>disabled</code> if you do not ship on iOS yet.</p></div></div><div class="step"><div class="step-num">3</div><div class="step-body"><p>Configure non-secret parameters. Create <span class="filepath">functions/.env.&lt;your-project-id&gt;</span> (git-ignored):</p><div class="code-block"><div class="code-block-header"><span class="code-block-title">functions/.env.your-project-id</span><button class="copy-btn" data-code="AI_PROVIDER_ORDER=gemini,openai,grok&#10;ANDROID_PACKAGE_NAME=com.example.toolyai&#10;IOS_BUNDLE_ID=com.example.toolyai&#10;APPLE_KEY_ID=&#10;APPLE_ISSUER_ID=&#10;ENFORCE_APP_CHECK=false&#10;GEMINI_MODEL=gemini-flash-latest&#10;OPENAI_MODEL=gpt-4o-mini&#10;GROK_MODEL=grok-4.3"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy</button></div><pre><code>AI_PROVIDER_ORDER=gemini,openai,grok
+ANDROID_PACKAGE_NAME=com.example.toolyai
+IOS_BUNDLE_ID=com.example.toolyai
+APPLE_KEY_ID=
+APPLE_ISSUER_ID=
+ENFORCE_APP_CHECK=false
+GEMINI_MODEL=gemini-flash-latest
+OPENAI_MODEL=gpt-4o-mini
+GROK_MODEL=grok-4.3</code></pre></div></div></div><div class="step"><div class="step-num">4</div><div class="step-body"><p>Deploy:</p><div class="code-block is-terminal"><div class="code-block-header"><span class="code-block-title">Terminal</span><button class="copy-btn" data-code="firebase deploy --only functions"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy</button></div><pre><code>firebase deploy --only functions</code></pre></div></div></div></div>
+      <h3>Functions reference</h3>
+      <table class="req-table"><thead><tr><th>Function</th><th>Purpose</th></tr></thead><tbody><tr><td><code>initUser</code></td><td>Creates the wallet (20 starter coins) and referral code on first sign-in</td></tr><tr><td><code>aiGenerate</code></td><td>Authenticated AI proxy: validates input, filters content, charges coins, calls Gemini / OpenAI / Grok with automatic fallback, refunds on failure</td></tr><tr><td><code>chargeImageGeneration</code></td><td>Filters the image prompt, charges coins, builds the image URLs (image.pollinations.ai) and records the charge</td></tr><tr><td><code>refundImageGeneration</code></td><td>Refunds an image charge when the image service fails. The server re-checks the image URLs itself, so refunds are only given for real failures (within 30 minutes, once)</td></tr><tr><td><code>verifyPurchase</code></td><td>Verifies a Google Play / App Store receipt and credits coins exactly once</td></tr><tr><td><code>claimDailyBonus</code>, <code>applyReferralCode</code>, <code>claimAdReward</code></td><td>Coin rewards with server-side limits</td></tr><tr><td><code>deleteAccount</code></td><td>Deletes the Auth user and all their Firestore data</td></tr></tbody></table>
+      <h3>Customising</h3>
+      <ul class="doc-list">
+        <li>Coin prices per feature, product-to-coin mapping, models, rate limits and blocked-content patterns: <span class="filepath">functions/config.js</span>. Keep <code>FEATURE_COSTS</code> in sync with <code>FeatureCost</code> in <span class="filepath">lib/services/firebase_service.dart</span> (display only) and <code>PRODUCT_COINS</code> with <span class="filepath">lib/services/purchases_service.dart</span>.</li>
+        <li>Models: <code>GEMINI_MODEL</code>, <code>OPENAI_MODEL</code>, <code>GROK_MODEL</code> (defaults in functions/config.js). AI providers retire model IDs regularly; if requests start failing, check <code>firebase functions:log</code> and set a current model ID.</li>
+        <li>Provider order / disabling providers: <code>AI_PROVIDER_ORDER</code>. Media features (images, PDF, audio, video) always use Gemini.</li>
+      </ul>
+      <h3>Google Play receipt verification</h3>
+      <p>In <em>Google Cloud console</em> enable the <strong>Google Play Android Developer API</strong> for your Firebase project. In <em>Play Console &rarr; Users and permissions</em> invite the functions service account (<code>YOUR_PROJECT_ID@appspot.gserviceaccount.com</code>) with the permissions <em>View financial data</em> and <em>Manage orders and subscriptions</em>. Create five managed (consumable) products with the IDs <code>starter, basic, popular, premium, ultimate</code>.</p>
+      <h3>App Store receipt verification</h3>
+      <p>Create an <em>In-App Purchase key</em> in App Store Connect &rarr; Users and Access &rarr; Integrations. Store the .p8 contents in <code>APPLE_KEY_P8</code> and set <code>APPLE_KEY_ID</code> and <code>APPLE_ISSUER_ID</code>. Create the same five consumable products.</p>
+      <div class="callout callout-warn"><svg class="callout-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg><div><p><strong>Receipt verification is implemented but needs your store credentials to run.</strong> Test with a Play Console license tester / App Store sandbox account before launch.</p></div></div>
+
+    </section>
+
+    <section id="rules">
+      <h2>Firestore Rules</h2>
+
+      <p>The rules file is <span class="filepath">firestore.rules</span> (deploy with <code>firebase deploy --only firestore:rules</code>). Summary:</p>
+      <ul class="doc-list">
+        <li><code>users/{uid}</code>: the owner can <strong>read</strong>; <strong>nobody can write</strong> from the client, so coins, purchase flags and referral data cannot be tampered with.</li>
+        <li><code>users/{uid}/notes</code>: owner read/write with field and size validation.</li>
+        <li><code>transactions</code>: owner read-only. <code>purchases</code>: no client access.</li>
+        <li><code>reports</code>: create-only, must contain the caller's uid, size limited.</li>
+        <li>Everything else is denied.</li>
+      </ul>
+      <div class="code-block"><div class="code-block-header"><span class="code-block-title">firestore.rules (excerpt)</span><button class="copy-btn" data-code="match /users/{uid} {&#10;  allow read: if isOwner(uid);&#10;  allow write: if false;   // Cloud Functions (Admin SDK) only&#10;}&#10;match /transactions/{id} {&#10;  allow read: if signedIn() &amp;&amp; resource.data.uid == request.auth.uid;&#10;  allow write: if false;&#10;}"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy</button></div><pre><code>match /users/{uid} {
+  allow read: if isOwner(uid);
+  allow write: if false;   // Cloud Functions (Admin SDK) only
+}
+match /transactions/{id} {
+  allow read: if signedIn() &amp;&amp; resource.data.uid == request.auth.uid;
+  allow write: if false;
+}</code></pre></div>
+
+    </section>
+
+    <section id="security">
+      <h2>Security Model</h2>
+
+      <table class="req-table"><thead><tr><th>Risk</th><th>Mitigation</th></tr></thead><tbody><tr><td>AI keys extracted from the APK/IPA</td><td>Keys exist only in Firebase Secret Manager and are used by Cloud Functions. The app has no key and no key-entry screen.</td></tr><tr><td>Users editing their coin balance</td><td>Firestore rules deny all client writes to wallet data; coins change only inside Cloud Functions transactions.</td></tr><tr><td>Fake purchases / replayed receipts</td><td><code>verifyPurchase</code> checks the receipt with Google/Apple and stores each order ID once.</td></tr><tr><td>Abuse of the AI proxy</td><td>Authentication required, optional App Check, per-user rate limit (20/min), prompt and media size limits, content filtering.</td></tr><tr><td>Referral / reward farming</td><td>Server-side validation: one referral per account, loop detection, ad-reward cooldown and daily cap.</td></tr><tr><td>Data left behind after leaving</td><td>In-app <em>Delete account</em> removes all user data (see below).</td></tr></tbody></table>
+
+    </section>
+
+    <section id="costs">
+      <h2>Costs &amp; Responsibility</h2>
+
+      <div class="callout callout-warn"><svg class="callout-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg><div><p><strong>You (the buyer) are responsible for all usage costs</strong> incurred with third-party services: Google Gemini, OpenAI and xAI API usage, Firebase (Blaze plan: Cloud Functions, Firestore, Authentication), Google Play / Apple developer fees and any other provider. Set budgets and alerts in Google Cloud Billing and each AI provider console before launching, and price the coin packs so that revenue covers these costs.</p></div></div>
+      <p>The author is not responsible for charges generated by your app, and the item does not include any AI credits or API keys.</p>
+
+    </section>
     <!-- ── APP NAME ─────────────────────────────────────── -->
     <section id="app-name">
       <h2>App Name</h2>
@@ -889,10 +944,10 @@
     <!-- ── SPLASH LOGO ──────────────────────────────────── -->
     <section id="splash-logo">
       <h2>Splash Logo</h2>
-      <p>The animated splash screen uses a combination of Lottie animations and static branding assets.</p>
+      <p>The Flutter splash screen shows the app icon on the brand gradient, then opens onboarding, the welcome screen or the dashboard.</p>
 
       <p><strong>Static asset path:</strong> <span class="filepath">assets/images/app_icon.png</span></p>
-      <p><strong>Splash Lottie asset path:</strong> <span class="filepath">assets/lottie/splash.json</span></p>
+      <p><strong>Native launch screens:</strong> <span class="filepath">android/app/src/main/res/drawable/launch_background.xml</span> and <span class="filepath">ios/Runner/Base.lproj/LaunchScreen.storyboard</span> (image: <span class="filepath">ios/Runner/Assets.xcassets/LaunchImage.imageset/</span>).</p>
       <p><strong>Splash screen logic file path:</strong> <span class="filepath">lib/features/splash/presentation/pages/splash_screen.dart</span></p>
 
       <div class="callout callout-warn">
@@ -914,16 +969,16 @@
           <button class="copy-btn" data-code='applicationId = "com.yourcompany.yourapp"'><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy</button>
         </div>
         <pre><code>android {
-    namespace = <span class="c-str">"com.vertexstation.toolyai"</span> <span class="c-comment">// ← Update your package namespace</span>
+    namespace = <span class="c-str">"com.example.toolyai"</span> <span class="c-comment">// ← Update your package namespace</span>
 
     defaultConfig {
-        applicationId = <span class="c-str">"com.vertexstation.toolyai"</span> <span class="c-comment">// ← Update your Application ID</span>
+        applicationId = <span class="c-str">"com.example.toolyai"</span> <span class="c-comment">// ← Update your Application ID</span>
     }
 }</code></pre>
       </div>
 
       <p>Android manifest file path: <span class="filepath">android/app/src/main/AndroidManifest.xml</span></p>
-      <p>Also update the <code>package</code> attribute on the root <code>&lt;manifest&gt;</code> element (if present) so it matches your <code>applicationId</code>.</p>
+      <p>The manifests no longer contain a <code>package</code> attribute: the package is defined by <code>namespace</code> / <code>applicationId</code> above. Also rename the folder <span class="filepath">android/app/src/main/kotlin/com/example/toolyai/</span> and the <code>package</code> line in <span class="filepath">MainActivity.kt</span> (the <code>change_app_package_name</code> tool below does all of this for you).</p>
 
       <h3>iOS — Xcode Project Configuration</h3>
       <p>iOS Xcode workspace file path: <span class="filepath">ios/Runner.xcworkspace</span></p>
@@ -967,10 +1022,10 @@
         </div>
         <pre><code><span class="c-type">class</span> <span class="c-key">MyStrings</span> {
   <span class="c-tag">static const String</span> appName = <span class="c-str">'Tooly AI'</span>;
-  <span class="c-tag">static const String</span> baseUrl = <span class="c-str">'https://api.openai.com/v1'</span>;
 }</code></pre>
       </div>
 
+      <p>English (<code>en.json</code>) is the fallback: if a key is missing in another language, the English text is shown. Texts changed in version 1.1.0 currently fall back to English in the other 14 languages - add translations for them if you need fully localized builds.</p>
       <p>Localization helper files path: <span class="filepath">lib/core/localization/app_localizations.dart</span> and <span class="filepath">lib/core/localization/localization_cubit.dart</span>.</p>
     </section>
 
@@ -1036,423 +1091,150 @@
     <!-- ── AI TOOLS & FEATURES ──────────────────────────── -->
     <section id="ai-tools">
       <h2>AI Tools &amp; Features</h2>
-      <p>Tooly AI bundles 15+ standalone AI features. Every tool is cleanly separated into its own page view and state cubit for easy maintenance and expansion.</p>
 
-      <div class="tools-grid">
-        <div class="tool-card">
-          <div class="tool-card-title">AI Chat Assistant</div>
-          <div class="tool-card-desc">Conversational assistant with history &amp; context.</div>
-          <span class="filepath">lib/features/chat/presentation/pages/chat_screen.dart</span>
-        </div>
+      <p>Every tool is implemented and functional. Tools marked <em>AI</em> call the <code>aiGenerate</code> function; the others run fully on-device.</p>
+      <table class="req-table"><thead><tr><th>Tool</th><th>Type</th><th>Notes</th></tr></thead><tbody><tr><td>Ask Anything (chat)</td><td>AI</td><td>Gemini / OpenAI / Grok through Cloud Functions</td></tr><tr><td>Translator, Email Maker, Social Post, Hashtags, Script Writer, Code Generator, Personal Advice (birthday, anniversary, gift, promotion, CV)</td><td>AI</td><td>Text generation</td></tr><tr><td>AI Math Solver, Image Describer, Image to Text, PDF to Text, PDF Summarizer, Audio Summarizer, Video to Text</td><td>AI (Gemini multimodal)</td><td>File is uploaded to the function (max ~10 MB) and analysed</td></tr><tr><td>Grammar Checker, Website Summarizer</td><td>AI</td><td>Website text is fetched by the app, then summarised</td></tr><tr><td>Image Generator</td><td>Third-party</td><td>Prompt is filtered and charged by the backend, image is produced by image.pollinations.ai. If every image fails to load the app requests a refund automatically.</td></tr><tr><td>Compress PDF</td><td>On-device</td><td>Renders each page to a JPEG (quality/resolution per level) and rebuilds the PDF. <strong>Text becomes part of the image and is no longer selectable.</strong> If the result would be larger the original is kept.</td></tr><tr><td>PDF Maker</td><td>On-device</td><td>Creates a real multi-page PDF (Roboto font: Latin, Cyrillic, Greek)</td></tr><tr><td>Document to PDF</td><td>On-device</td><td>Converts the <strong>text</strong> of .txt, .md and .docx files into a PDF. Formatting, images and tables are not preserved; .doc and .rtf are not supported.</td></tr><tr><td>Password Generator</td><td>On-device</td><td>Cryptographically secure random generator, nothing is sent to a server</td></tr><tr><td>Personal Notes</td><td>Firestore</td><td>Saved per user in Firestore (guests keep notes only in memory)</td></tr></tbody></table>
 
-        <div class="tool-card">
-          <div class="tool-card-title">AI Code Generator</div>
-          <div class="tool-card-desc">Generates &amp; formats code across languages.</div>
-          <span class="filepath">lib/features/code_generation/presentation/pages/code_generation_screen.dart</span>
-        </div>
-
-        <div class="tool-card">
-          <div class="tool-card-title">AI Image Generator</div>
-          <div class="tool-card-desc">Generates images from prompt text.</div>
-          <span class="filepath">lib/src/presentation/view/pages/image_screen/image_generate_screen.dart</span>
-        </div>
-
-        <div class="tool-card">
-          <div class="tool-card-title">Multi-Language Translator</div>
-          <div class="tool-card-desc">Real-time text translation engine.</div>
-          <span class="filepath">lib/features/translation/presentation/pages/g_translator_screen.dart</span>
-        </div>
-
-        <div class="tool-card">
-          <div class="tool-card-title">OCR Image to Text</div>
-          <div class="tool-card-desc">Extracts readable text from image files.</div>
-          <span class="filepath">lib/src/presentation/view/pages/tools/image_to_text_screen.dart</span>
-        </div>
-
-        <div class="tool-card">
-          <div class="tool-card-title">Image Describer</div>
-          <div class="tool-card-desc">Analyzes image contents &amp; generates captions.</div>
-          <span class="filepath">lib/src/presentation/view/pages/tools/image_describer_screen.dart</span>
-        </div>
-
-        <div class="tool-card">
-          <div class="tool-card-title">AI Math Solver</div>
-          <div class="tool-card-desc">Solves equations &amp; math problems with steps.</div>
-          <span class="filepath">lib/src/presentation/view/pages/tools/ai_math_solver_screen.dart</span>
-        </div>
-
-        <div class="tool-card">
-          <div class="tool-card-title">Grammar Checker</div>
-          <div class="tool-card-desc">Corrects grammar, style, and tone.</div>
-          <span class="filepath">lib/src/presentation/view/pages/tools/grammar_checker_screen.dart</span>
-        </div>
-
-        <div class="tool-card">
-          <div class="tool-card-title">AI Email Composer</div>
-          <div class="tool-card-desc">Drafts professional emails &amp; replies.</div>
-          <span class="filepath">lib/features/email_maker/presentation/pages/email_maker_screen.dart</span>
-        </div>
-
-        <div class="tool-card">
-          <div class="tool-card-title">PDF Maker &amp; Converter</div>
-          <div class="tool-card-desc">Creates PDFs &amp; extracts content from documents.</div>
-          <span class="filepath">lib/src/presentation/view/pages/tools/pdf_maker_screen.dart</span>
-        </div>
-
-        <div class="tool-card">
-          <div class="tool-card-title">PDF Summarizer</div>
-          <div class="tool-card-desc">Summarizes long PDF documents into key points.</div>
-          <span class="filepath">lib/src/presentation/view/pages/tools/pdf_summarizer_screen.dart</span>
-        </div>
-
-        <div class="tool-card">
-          <div class="tool-card-title">Compress &amp; Convert PDF</div>
-          <div class="tool-card-desc">PDF compression &amp; Word-to-PDF conversion.</div>
-          <span class="filepath">lib/src/presentation/view/pages/tools/compress_pdf_screen.dart</span>
-        </div>
-
-        <div class="tool-card">
-          <div class="tool-card-title">Audio &amp; Video Summarizer</div>
-          <div class="tool-card-desc">Transcribes audio/video files to text summaries.</div>
-          <span class="filepath">lib/src/presentation/view/pages/tools/audio_summarizer_screen.dart</span>
-        </div>
-
-        <div class="tool-card">
-          <div class="tool-card-title">Website Summarizer</div>
-          <div class="tool-card-desc">Fetches and summarizes webpage content.</div>
-          <span class="filepath">lib/src/presentation/view/pages/tools/website_summarizer_screen.dart</span>
-        </div>
-
-        <div class="tool-card">
-          <div class="tool-card-title">Personal AI Notes</div>
-          <div class="tool-card-desc">Smart note taking with AI enhancement.</div>
-          <span class="filepath">lib/src/presentation/view/pages/personal_note/personal_note.dart</span>
-        </div>
-
-        <div class="tool-card">
-          <div class="tool-card-title">Social Media Suite</div>
-          <div class="tool-card-desc">Hashtag generator &amp; social post composer.</div>
-          <span class="filepath">lib/features/social_media/presentation/pages/social_media_screen.dart</span>
-        </div>
-
-        <div class="tool-card">
-          <div class="tool-card-title">Personal Writing &amp; Advice</div>
-          <div class="tool-card-desc">CV maker, birthday messages &amp; advice.</div>
-          <span class="filepath">lib/features/personal_advice/presentation/pages/personal_advice.dart</span>
-        </div>
-
-        <div class="tool-card">
-          <div class="tool-card-title">Script Writer</div>
-          <div class="tool-card-desc">Generates video and story scripts.</div>
-          <span class="filepath">lib/features/script_writing/presentation/pages/script_writer_screen.dart</span>
-        </div>
-      </div>
     </section>
 
-    <!-- ── FIREBASE ─────────────────────────────────────── -->
-    <section id="firebase">
-      <h2>Firebase Setup</h2>
-      <p>Firebase powers user authentication (Google Sign-In) and Cloud Firestore for sync and coin balance management. Firebase is <strong>required</strong> for sign-in and coin sync, so connect your own Firebase project following the steps below. The &ldquo;Continue as guest&rdquo; button simply opens the app without signing in.</p>
+    <section id="safety">
+      <h2>Content Safety &amp; Reporting</h2>
 
-      <p><strong>Firebase Service implementation file path:</strong> <span class="filepath">lib/services/firebase_service.dart</span></p>
-      <p><strong>Auth Cubit file path:</strong> <span class="filepath">lib/features/auth/presentation/cubit/auth_cubit.dart</span></p>
-      <p><strong>Login UI Screen file path:</strong> <span class="filepath">lib/src/presentation/view/pages/auth/login_screen.dart</span></p>
+      <h3>Content filtering</h3>
+      <ul class="doc-list">
+        <li>Every prompt passes the blocked-pattern list in <span class="filepath">functions/config.js</span> (<code>BLOCKED_PATTERNS</code> - extend it for your audience) and, when an OpenAI key is configured, OpenAI's free moderation endpoint.</li>
+        <li>Gemini requests use safety settings at <code>BLOCK_MEDIUM_AND_ABOVE</code> for harassment, hate, sexual and dangerous content.</li>
+        <li>Generated text is checked again before it is returned. Blocked requests are refunded and the user sees a clear message.</li>
+        <li>Image prompts are filtered before coins are charged and before the image URL is built.</li>
+      </ul>
+      <h3>Reporting</h3>
+      <p>Every AI result screen has a <strong>flag (Report)</strong> button. The user picks a reason and the report (content, feature, reason, user id, time) is written to the Firestore <code>reports</code> collection. Review reports in the Firebase console (or build an admin view) and take action. Reports are deleted together with the user's account.</p>
+      <div class="callout callout-info"><svg class="callout-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg><div><p>No filter is perfect. Review reports regularly, tighten <code>BLOCKED_PATTERNS</code> if needed, and keep your store listing age rating consistent with the content the AI can produce.</p></div></div>
 
-      <div class="steps">
-        <div class="step">
-          <div class="step-num">1</div>
-          <div class="step-body">
-            <p>Go to the <a href="https://console.firebase.google.com" target="_blank">Firebase Console</a>, create a new project, and register both an Android and iOS app with your package identifier.</p>
-          </div>
-        </div>
-        <div class="step">
-          <div class="step-num">2</div>
-          <div class="step-body">
-            <p><strong>Android configuration file path:</strong> Download <code>google-services.json</code> and place it at:</p>
-            <span class="filepath">android/app/google-services.json</span>
-          </div>
-        </div>
-        <div class="step">
-          <div class="step-num">3</div>
-          <div class="step-body">
-            <p><strong>iOS configuration file path:</strong> Download <code>GoogleService-Info.plist</code> and place it at:</p>
-            <span class="filepath">ios/Runner/GoogleService-Info.plist</span>
-          </div>
-        </div>
-        <div class="step">
-          <div class="step-num">4</div>
-          <div class="step-body">
-            <p>In the Firebase Console, go to <strong>Authentication → Sign-in method</strong>, enable <strong>Google Sign-In</strong>. Register your app's SHA-1 and SHA-256 fingerprints for Android Google Sign-In.</p>
-          </div>
-        </div>
-        <div class="step">
-          <div class="step-num">5</div>
-          <div class="step-body">
-            <p>Enable <strong>Cloud Firestore</strong> and <strong>Realtime Database</strong> in your Firebase project console.</p>
-          </div>
-        </div>
-      </div>
     </section>
 
-    <!-- ── AI API KEYS ───────────────────────────────────── -->
-    <section id="ai-keys">
-      <h2>AI API Keys</h2>
-      <p>Tooly AI implements a resilient multi-provider fallback engine. If the primary provider (Google Gemini) encounters rate limits or errors, the request automatically fails over to Groq, Hugging Face, Cohere, OpenAI, or Grok.</p>
+    <section id="account-deletion">
+      <h2>Account Deletion</h2>
 
-      <p><strong>API Key Manager file path:</strong> <span class="filepath">lib/services/api_key_manager.dart</span></p>
-      <p><strong>Unified AI Service file path:</strong> <span class="filepath">lib/services/unified_ai_service.dart</span></p>
-      <p><strong>Generative AI Service file path:</strong> <span class="filepath">lib/services/gen_ai_service.dart</span></p>
-      <p><strong>User API Settings Screen file path:</strong> <span class="filepath">lib/src/presentation/view/pages/settings/api_settings_screen.dart</span></p>
+      <p><em>Menu &rarr; Delete account</em> (visible when signed in) lets users permanently delete their account, as required by Google Play and the App Store. The user confirms, re-authenticates (Google or password) and the <code>deleteAccount</code> function removes the Firebase Auth user, <code>users/{uid}</code> with its notes, all <code>transactions</code> and <code>reports</code> of that user.</p>
+      <p>Purchase records in <code>purchases</code> are kept only as anonymous order IDs for fraud prevention. For Google Play, also enter your <em>account deletion</em> URL/steps in the Data safety form.</p>
 
-      <div class="provider-grid">
-        <div class="provider-card">
-          <div class="provider-name">Google Gemini</div>
-          <div class="provider-role">Primary AI provider</div>
-          <span class="provider-tag tag-primary">Primary</span>
-        </div>
-        <div class="provider-card">
-          <div class="provider-name">Groq</div>
-          <div class="provider-role">Llama / Mixtral models</div>
-          <span class="provider-tag tag-free">Free tier</span>
-        </div>
-        <div class="provider-card">
-          <div class="provider-name">Hugging Face</div>
-          <div class="provider-role">Open-source models</div>
-          <span class="provider-tag tag-fallback">Fallback</span>
-        </div>
-        <div class="provider-card">
-          <div class="provider-name">Cohere</div>
-          <div class="provider-role">Command models</div>
-          <span class="provider-tag tag-fallback">Fallback</span>
-        </div>
-        <div class="provider-card">
-          <div class="provider-name">OpenAI</div>
-          <div class="provider-role">GPT-4 / GPT-3.5 models</div>
-          <span class="provider-tag tag-fallback">Fallback</span>
-        </div>
-        <div class="provider-card">
-          <div class="provider-name">Grok / xAI</div>
-          <div class="provider-role">xAI Grok models</div>
-          <span class="provider-tag tag-fallback">Fallback</span>
-        </div>
-      </div>
-
-      <div class="code-block">
-        <div class="code-block-header">
-          <span class="code-block-title">lib/services/api_key_manager.dart</span>
-          <button class="copy-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy</button>
-        </div>
-        <pre><code><span class="c-comment">// The app ships with NO API keys. Add yours in the app under</span>
-<span class="c-comment">// Settings → API Settings, or add them here:</span>
-<span class="c-tag">static final</span> List&lt;ApiKeyConfig&gt; _geminiKeys = [
-  ApiKeyConfig(
-    key: <span class="c-str">"YOUR_GEMINI_API_KEY"</span>,
-    provider: ApiProvider.googleGemini,
-    tier: ApiTier.free,
-    isActive: true,
-  ),
-];
-
-<span class="c-comment">// Fallback providers (empty by default, same format as above)</span>
-<span class="c-tag">static final</span> List&lt;ApiKeyConfig&gt; _groqKeys        = [];
-<span class="c-tag">static final</span> List&lt;ApiKeyConfig&gt; _huggingFaceKeys = [];
-<span class="c-tag">static final</span> List&lt;ApiKeyConfig&gt; _cohereKeys      = [];
-<span class="c-tag">static final</span> List&lt;ApiKeyConfig&gt; _openaiKeys      = [];
-<span class="c-tag">static final</span> List&lt;ApiKeyConfig&gt; _grokKeys        = [];</code></pre>
-      </div>
-
-      <div class="callout callout-info">
-        <svg class="callout-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-        <div><p>End users can also input personal API keys on device in <strong>Settings → API Keys</strong> (<span class="filepath">lib/src/presentation/view/pages/settings/api_settings_screen.dart</span>). Custom keys take execution precedence over app defaults.</p></div>
-      </div>
     </section>
 
-    <!-- ── ARCHITECTURE & SERVICES ────────────────────────── -->
-    <section id="architecture">
-      <h2>Architecture &amp; Core Services</h2>
-      <p>Tooly AI is architected using GetIt service locator dependency injection, BLoC state management, and modular service utilities.</p>
+    <section id="third-party">
+      <h2>Third-Party Services</h2>
 
-      <h3>1. Application Entry Point</h3>
-      <p>File path: <span class="filepath">lib/main.dart</span></p>
-      <p>Initializes Firebase, GetIt DI, In-App Purchases, AI Key Managers, and AdMob before binding global BLoC providers.</p>
+      <p>The app and backend use the following external services. Review their terms and privacy policies and reflect them in your own privacy policy.</p>
+      <table class="req-table"><thead><tr><th>Service</th><th>Used for</th><th>Data sent</th></tr></thead><tbody><tr><td>Firebase (Auth, Firestore, Cloud Functions, App Check)</td><td>Backend</td><td>Account data, coins, notes, reports</td></tr><tr><td>Google Gemini API</td><td>AI text &amp; multimodal results (primary)</td><td>Prompts, uploaded files (via your Cloud Functions)</td></tr><tr><td>OpenAI API</td><td>AI text fallback and content moderation</td><td>Prompts (via Cloud Functions)</td></tr><tr><td>xAI Grok API</td><td>AI text fallback</td><td>Prompts (via Cloud Functions)</td></tr><tr><td><strong>image.pollinations.ai</strong></td><td>Generates the images of the Image Generator</td><td>The (filtered) text prompt is part of the image URL requested by the device</td></tr><tr><td>Google AdMob</td><td>Banner, interstitial and rewarded ads</td><td>Advertising identifiers</td></tr><tr><td>Google Play Billing / Apple StoreKit</td><td>Coin purchases</td><td>Purchase receipts</td></tr><tr><td>Google Sign-In</td><td>Authentication</td><td>Google account profile</td></tr></tbody></table>
+      <div class="callout callout-warn"><svg class="callout-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg><div><p>image.pollinations.ai is a free third-party service that is not controlled by the author. Its availability, output and terms can change. If you need guaranteed quality, replace it with an image API of your choice (see <code>image_details_screen.dart</code>).</p></div></div>
 
-      <h3>2. Dependency Injection Locator</h3>
-      <p>File path: <span class="filepath">lib/core/di/injection_container.dart</span></p>
-      <p>Registers singletons for <code>SharedPreferences</code>, repositories, and factory instances for all Cubits.</p>
-
-      <h3>3. Route Helper &amp; Navigation</h3>
-      <p>File path: <span class="filepath">lib/src/config/routes/route_helper.dart</span></p>
-      <p>Central route table mapping route constants to screen widgets (splash, onboarding, dashboard, home, login, apiSettings).</p>
-
-      <h3>4. Dashboard &amp; Start Screen</h3>
-      <p>File path: <span class="filepath">lib/src/presentation/view/pages/dashboard/start_screen.dart</span></p>
-      <p>Main navigation shell hosting bottom navigation tabs, tool drawer, and quick feature access.</p>
     </section>
 
-    <!-- ── ADMOB ─────────────────────────────────────────── -->
+    <section id="ai-disclosure">
+      <h2>AI Disclosure</h2>
+
+      <p>In line with marketplace transparency requirements: <strong>AI tools were used to assist with the development of this item</strong> - including parts of the source code, the documentation text and some in-app text. AI-assisted output was reviewed and tested by the author. Graphics and icons: see the credits in your item description (state here whether you used generative tools for them).</p>
+      <p>Inside the app, users are shown a one-time notice (<span class="filepath">lib/src/presentation/view/component/ai_consent.dart</span>) explaining that content is generated by AI providers, can be inaccurate and can be reported.</p>
+
+    </section>
+
     <section id="admob">
       <h2>AdMob Integration</h2>
-      <p>The app supports Banner, Interstitial, and Rewarded video ads powered by Google Mobile Ads SDK. Replace default IDs across three configuration files before launching.</p>
 
-      <h3>Step 1 — Android App ID</h3>
-      <p>Android manifest file path: <span class="filepath">android/app/src/main/AndroidManifest.xml</span></p>
-      <div class="code-block">
-        <div class="code-block-header">
-          <span class="code-block-title">android/app/src/main/AndroidManifest.xml</span>
-          <button class="copy-btn" data-code='android:value="ca-app-pub-XXXXXXXXXXXXXXXX~XXXXXXXXXX"'><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy</button>
-        </div>
-        <pre><code><span class="c-attr">&lt;meta-data</span>
-    <span class="c-key">android:name</span>=<span class="c-str">"com.google.android.gms.ads.APPLICATION_ID"</span>
-    <span class="c-key">android:value</span>=<span class="c-str">"ca-app-pub-XXXXXXXXXXXXXXXX~XXXXXXXXXX"</span><span class="c-attr">/&gt;</span></code></pre>
-      </div>
+      <p>Banner, interstitial and rewarded ads use the Google Mobile Ads SDK. The project ships with Google's <strong>test</strong> IDs, so ads work out of the box and are safe for development.</p>
+      <div class="steps"><div class="step"><div class="step-num">1</div><div class="step-body"><p>Android App ID in <span class="filepath">android/app/src/main/AndroidManifest.xml</span>:</p><div class="code-block"><div class="code-block-header"><span class="code-block-title">AndroidManifest.xml</span><button class="copy-btn" data-code="&lt;meta-data&#10;    android:name=&quot;com.google.android.gms.ads.APPLICATION_ID&quot;&#10;    android:value=&quot;ca-app-pub-XXXXXXXXXXXXXXXX~XXXXXXXXXX&quot;/&gt;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy</button></div><pre><code>&lt;meta-data
+    android:name="com.google.android.gms.ads.APPLICATION_ID"
+    android:value="ca-app-pub-XXXXXXXXXXXXXXXX~XXXXXXXXXX"/&gt;</code></pre></div></div></div><div class="step"><div class="step-num">2</div><div class="step-body"><p>iOS App ID in <span class="filepath">ios/Runner/Info.plist</span>:</p><div class="code-block"><div class="code-block-header"><span class="code-block-title">Info.plist</span><button class="copy-btn" data-code="&lt;key&gt;GADApplicationIdentifier&lt;/key&gt;&#10;&lt;string&gt;ca-app-pub-XXXXXXXXXXXXXXXX~XXXXXXXXXX&lt;/string&gt;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy</button></div><pre><code>&lt;key&gt;GADApplicationIdentifier&lt;/key&gt;
+&lt;string&gt;ca-app-pub-XXXXXXXXXXXXXXXX~XXXXXXXXXX&lt;/string&gt;</code></pre></div></div></div><div class="step"><div class="step-num">3</div><div class="step-body"><p>Ad unit IDs in <span class="filepath">lib/services/ad_manager.dart</span> (<code>bannerAdUnitId</code>, <code>interstitialAdUnitId</code>, <code>rewardedAdUnitId</code>). Replace the Google test IDs with your own before release.</p></div></div></div>
+      <p>Rewarded-ad coins are granted by <code>claimAdReward</code> (3 coins, 30 s cooldown, 10 per day). For stronger protection enable AdMob <em>server-side verification</em> on your rewarded ad unit and extend the function.</p>
+      <p>The <code>NSUserTrackingUsageDescription</code> and a <code>SKAdNetworkItems</code> entry are already in Info.plist. Add the full SKAdNetwork list from the AdMob documentation, implement the Google UMP consent flow where required (EEA/UK) and set your ad content rating.</p>
 
-      <h3>Step 2 — iOS App ID</h3>
-      <p>iOS plist configuration file path: <span class="filepath">ios/Runner/Info.plist</span></p>
-      <div class="code-block">
-        <div class="code-block-header">
-          <span class="code-block-title">ios/Runner/Info.plist</span>
-          <button class="copy-btn" data-code="&lt;key&gt;GADApplicationIdentifier&lt;/key&gt;&#10;&lt;string&gt;ca-app-pub-XXXXXXXXXXXXXXXX~XXXXXXXXXX&lt;/string&gt;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy</button>
-        </div>
-        <pre><code><span class="c-attr">&lt;key&gt;</span>GADApplicationIdentifier<span class="c-attr">&lt;/key&gt;</span>
-<span class="c-attr">&lt;string&gt;</span>ca-app-pub-XXXXXXXXXXXXXXXX~XXXXXXXXXX<span class="c-attr">&lt;/string&gt;</span></code></pre>
-      </div>
-
-      <h3>Step 3 — Dart Ad Unit IDs</h3>
-      <p>Ad service manager file path: <span class="filepath">lib/services/ad_manager.dart</span></p>
-      <p>Banner Ad Widget file path: <span class="filepath">lib/src/presentation/view/component/banner_ad_widget.dart</span></p>
-      <div class="code-block">
-        <div class="code-block-header">
-          <span class="code-block-title">lib/services/ad_manager.dart</span>
-          <button class="copy-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy</button>
-        </div>
-        <pre><code><span class="c-comment">// Google's official TEST ad unit IDs. Replace with your own before publishing.</span>
-<span class="c-key">static const String</span> bannerAdUnitId       = <span class="c-str">'ca-app-pub-3940256099942544/6300978111'</span>;
-<span class="c-key">static const String</span> interstitialAdUnitId = <span class="c-str">'ca-app-pub-3940256099942544/1033173712'</span>;
-<span class="c-key">static const String</span> rewardedAdUnitId     = <span class="c-str">'ca-app-pub-3940256099942544/5224354917'</span>;</code></pre>
-      </div>
-
-      <div class="callout callout-warn">
-        <svg class="callout-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-        <div><p>The project ships with Google's official <strong>test</strong> app and ad unit IDs, so it is safe to run as-is. Replace all of them (manifest, <code>Info.plist</code> and the three IDs above) with your own AdMob IDs only for your final release build. Clicking your own live ads during testing can get your AdMob account suspended for invalid activity.</p></div>
-      </div>
     </section>
 
-    <!-- ── IN-APP PURCHASES ──────────────────────────────── -->
     <section id="iap">
       <h2>In-App Purchases</h2>
-      <p>Tooly AI includes a coin credit monetization system using the Flutter <code>in_app_purchase</code> plugin. Users buy coin packs that are credited directly to their Firebase user account balance.</p>
 
-      <p><strong>In-App Purchase Service file path:</strong> <span class="filepath">lib/services/purchases_service.dart</span></p>
-      <p><strong>Recharge Coin Screen UI file path:</strong> <span class="filepath">lib/features/recharge_coin/presentation/pages/recharge_coin_screen.dart</span></p>
-      <p><strong>Checkout Screen UI file path:</strong> <span class="filepath">lib/features/recharge_coin/presentation/pages/checkout_screen.dart</span></p>
+      <p>Users buy coin packs with Google Play Billing / StoreKit. The app starts the purchase; the receipt is then sent to <code>verifyPurchase</code>, which verifies it with the store and credits the coins in a transaction. Coins are never credited by the app itself, and the Android purchase is consumed only after the server confirmed it.</p>
+      <table class="req-table"><thead><tr><th>Product ID</th><th>Coins credited</th></tr></thead><tbody><tr><td><code>starter</code></td><td>100</td></tr><tr><td><code>basic</code></td><td>525</td></tr><tr><td><code>popular</code></td><td>1100</td></tr><tr><td><code>premium</code></td><td>2800</td></tr><tr><td><code>ultimate</code></td><td>5750</td></tr></tbody></table>
+      <p>Create these as <strong>consumable / managed products</strong> in Play Console and App Store Connect. To change amounts edit <code>PRODUCT_COINS</code> in <span class="filepath">functions/config.js</span> (authoritative) and the display mirror in <span class="filepath">lib/services/purchases_service.dart</span>, then redeploy the functions. Credentials: see <a href="#functions">Cloud Functions</a>.</p>
+      <p>A verified purchase also sets <code>hasPurchasedPlan</code>, which removes ads for that user.</p>
 
-      <table class="req-table">
-        <thead>
-          <tr><th>Product ID</th><th>Coins Credited</th><th>Default Package Tier</th></tr>
-        </thead>
-        <tbody>
-          <tr><td><code>starter</code></td><td>100</td><td>Starter Pack</td></tr>
-          <tr><td><code>basic</code></td><td>525</td><td>Basic Pack</td></tr>
-          <tr><td><code>popular</code></td><td>1,100</td><td>Popular Pack</td></tr>
-          <tr><td><code>premium</code></td><td>2,800</td><td>Premium Pack</td></tr>
-          <tr><td><code>ultimate</code></td><td>5,750</td><td>Ultimate Pack</td></tr>
-        </tbody>
-      </table>
-
-      <div class="code-block">
-        <div class="code-block-header">
-          <span class="code-block-title">lib/services/purchases_service.dart</span>
-          <button class="copy-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy</button>
-        </div>
-        <pre><code><span class="c-type">class</span> <span class="c-key">PurchasesConfig</span> {
-  <span class="c-tag">static const Map&lt;String, int&gt;</span> packageCoinsMap = {
-    <span class="c-str">'starter'</span>: <span class="c-num">100</span>,
-    <span class="c-str">'basic'</span>: <span class="c-num">525</span>,
-    <span class="c-str">'popular'</span>: <span class="c-num">1100</span>,
-    <span class="c-str">'premium'</span>: <span class="c-num">2800</span>,
-    <span class="c-str">'ultimate'</span>: <span class="c-num">5750</span>,
-  };
-}</code></pre>
-      </div>
-
-      <div class="steps">
-        <div class="step">
-          <div class="step-num">1</div>
-          <div class="step-body"><p>Configure matching consumable product IDs (<code>starter</code>, <code>basic</code>, <code>popular</code>, <code>premium</code>, <code>ultimate</code>) in <strong>Google Play Console</strong> (Monetize → In-app products) and <strong>App Store Connect</strong> (In-App Purchases → Consumables).</p></div>
-        </div>
-        <div class="step">
-          <div class="step-num">2</div>
-          <div class="step-body"><p>Adjust coin reward ratios in <span class="filepath">lib/services/purchases_service.dart</span> to suit your pricing model.</p></div>
-        </div>
-        <div class="step">
-          <div class="step-num">3</div>
-          <div class="step-body"><p>Test purchase transactions with Play Console License Testers and App Store Sandbox accounts.</p></div>
-        </div>
-      </div>
     </section>
 
-    <!-- ── SUBMISSION ───────────────────────────────────── -->
+    <section id="signing">
+      <h2>Release Signing</h2>
+
+      <h3>Android</h3>
+      <div class="steps"><div class="step"><div class="step-num">1</div><div class="step-body"><p>Create an upload keystore (keep it and its passwords safe, outside the project):</p><div class="code-block is-terminal"><div class="code-block-header"><span class="code-block-title">Terminal</span><button class="copy-btn" data-code="keytool -genkey -v -keystore ~/upload-keystore.jks -keyalg RSA -keysize 2048 -validity 10000 -alias upload"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy</button></div><pre><code>keytool -genkey -v -keystore ~/upload-keystore.jks -keyalg RSA -keysize 2048 -validity 10000 -alias upload</code></pre></div></div></div><div class="step"><div class="step-num">2</div><div class="step-body"><p>Create <span class="filepath">android/key.properties</span> (git-ignored):</p><div class="code-block"><div class="code-block-header"><span class="code-block-title">android/key.properties</span><button class="copy-btn" data-code="storePassword=YOUR_STORE_PASSWORD&#10;keyPassword=YOUR_KEY_PASSWORD&#10;keyAlias=upload&#10;storeFile=/absolute/path/to/upload-keystore.jks"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy</button></div><pre><code>storePassword=YOUR_STORE_PASSWORD
+keyPassword=YOUR_KEY_PASSWORD
+keyAlias=upload
+storeFile=/absolute/path/to/upload-keystore.jks</code></pre></div><p><span class="filepath">android/app/build.gradle</span> already reads this file for the release build type.</p></div></div><div class="step"><div class="step-num">3</div><div class="step-body"><p>Add the release SHA-1/SHA-256 (and the Play App Signing certificate) to Firebase, then build:</p><div class="code-block is-terminal"><div class="code-block-header"><span class="code-block-title">Terminal</span><button class="copy-btn" data-code="flutter build appbundle --release"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy</button></div><pre><code>flutter build appbundle --release</code></pre></div><p>Output: <code>build/app/outputs/bundle/release/app-release.aab</code></p></div></div></div>
+      <h3>iOS</h3>
+      <div class="steps"><div class="step"><div class="step-num">1</div><div class="step-body"><p>Open <code>ios/Runner.xcworkspace</code>, select the Runner target &rarr; <em>Signing &amp; Capabilities</em>, choose your Team and set your Bundle Identifier. (No team ID is stored in the project.)</p></div></div><div class="step"><div class="step-num">2</div><div class="step-body"><p>Archive and upload:</p><div class="code-block is-terminal"><div class="code-block-header"><span class="code-block-title">Terminal</span><button class="copy-btn" data-code="flutter build ipa --release"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy</button></div><pre><code>flutter build ipa --release</code></pre></div><p>Then upload the IPA with Xcode Organizer or Transporter.</p></div></div></div>
+      <p>Official guides: <a href="https://docs.flutter.dev/deployment/android" target="_blank">Android</a> and <a href="https://docs.flutter.dev/deployment/ios" target="_blank">iOS</a>.</p>
+
+    </section>
+
     <section id="submission">
       <h2>Submission</h2>
-      <p>Once all branding, API keys, Firebase services, and ad configurations are verified on physical test devices, build production binaries for app store upload.</p>
 
-      <h3>Pre-Submission Checklist</h3>
+      <h3>Pre-submission checklist</h3>
       <ul class="doc-list">
-        <li>Updated <code>appName</code> in <span class="filepath">lib/src/utils/constants/m_strings.dart</span></li>
-        <li>Updated label &amp; package ID in <span class="filepath">android/app/src/main/AndroidManifest.xml</span> and <span class="filepath">android/app/build.gradle</span></li>
-        <li>Updated display name &amp; bundle ID in <span class="filepath">ios/Runner/Info.plist</span></li>
-        <li>Replaced icons in <span class="filepath">android/app/src/main/res/</span> and <span class="filepath">ios/Runner/Assets.xcassets/AppIcon.appiconset/</span></li>
-        <li>Added production <span class="filepath">android/app/google-services.json</span> and <span class="filepath">ios/Runner/GoogleService-Info.plist</span></li>
-        <li>Added your AI API keys (Settings → API Settings, or <span class="filepath">lib/services/api_key_manager.dart</span>)</li>
-        <li>Replaced the test AdMob IDs with your own in <span class="filepath">lib/services/ad_manager.dart</span>, <span class="filepath">AndroidManifest.xml</span> and <span class="filepath">Info.plist</span></li>
-        <li>Created your own release keystore and <span class="filepath">android/key.properties</span> (see the Flutter Android deployment guide linked below)</li>
-        <li>Registered Consumable IAP Product IDs in Play Store &amp; App Store Connect</li>
+        <li>Renamed the package / bundle ID, app name and icons; set your support e-mail in <code>MyStrings.supportEmail</code> (<code>lib/src/utils/constants/m_strings.dart</code>).</li>
+        <li>Added <code>google-services.json</code> and <code>GoogleService-Info.plist</code> from <strong>your</strong> Firebase project and set the Google Sign-In URL scheme.</li>
+        <li>Deployed <code>firestore.rules</code>, indexes and Cloud Functions; stored the secrets; enabled App Check.</li>
+        <li>Replaced the AdMob test IDs; created the five consumable products.</li>
+        <li>Added a privacy policy URL covering the services listed in <a href="#third-party">Third-Party Services</a> and filled the store Data safety / App Privacy forms.</li>
+        <li>Account deletion works (store requirement) and reports are reviewed by you.</li>
+        <li>Release signing is configured; tested on real devices.</li>
       </ul>
 
-      <h3>Android App Bundle (.aab) Build Command</h3>
-      <div class="code-block is-terminal">
-        <div class="code-block-header">
-          <span class="code-block-title">Terminal</span>
-          <button class="copy-btn" data-code="flutter build appbundle --release"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy</button>
-        </div>
-        <pre><code>flutter build appbundle --release</code></pre>
-      </div>
-      <p>Output file path: <span class="filepath">build/app/outputs/bundle/release/app-release.aab</span></p>
-
-      <h3>iOS Archive &amp; IPA Build Command</h3>
-      <div class="code-block is-terminal">
-        <div class="code-block-header">
-          <span class="code-block-title">Terminal</span>
-          <button class="copy-btn" data-code="flutter build ipa --release"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy</button>
-        </div>
-        <pre><code>flutter build ipa --release</code></pre>
-      </div>
-      <p>Output file path: <span class="filepath">build/ios/archive/Runner.xcarchive</span> or <span class="filepath">build/ios/ipa/</span></p>
-
-      <p>For complete app signing and publishing instructions, refer to official Flutter documentation:</p>
-      <ul class="doc-list">
-        <li><strong>Google Play Store:</strong> <a href="https://docs.flutter.dev/deployment/android" target="_blank">Deploying Flutter to Android</a></li>
-        <li><strong>Apple App Store:</strong> <a href="https://docs.flutter.dev/deployment/ios" target="_blank">Deploying Flutter to iOS</a></li>
-      </ul>
     </section>
 
-    <!-- ── SUPPORT ───────────────────────────────────────── -->
+    <section id="troubleshooting">
+      <h2>Troubleshooting &amp; FAQ</h2>
+
+      <table class="req-table"><thead><tr><th>Problem</th><th>Solution</th></tr></thead><tbody><tr><td>Android build: <em>File google-services.json is missing</em></td><td>Download it from your Firebase project into <code>android/app/</code> (templates are not used by Gradle).</td></tr><tr><td>Google sign-in fails (<code>ApiException: 10</code> / <code>12500</code>)</td><td>Add the SHA-1 and SHA-256 of the keystore you are running with to the Android app in Firebase, re-download <code>google-services.json</code>. For Play-distributed builds add the Play App Signing SHA-1 too.</td></tr><tr><td>iOS: Google sign-in crashes or nothing happens</td><td>Put <code>REVERSED_CLIENT_ID</code> from <code>GoogleService-Info.plist</code> into the URL scheme in <code>Info.plist</code>.</td></tr><tr><td>iOS: pod errors / <em>Podfile.lock</em> missing</td><td>On a Mac run <code>flutter pub get</code>, then <code>cd ios &amp;&amp; pod install --repo-update</code>. The lock file is generated for the exact plugins you install.</td></tr><tr><td>"Please sign in" / <code>unauthenticated</code> when using a tool</td><td>AI tools need a signed-in user. Use Google or the demo email account.</td></tr><tr><td><code>NOT_FOUND</code> / function not found</td><td>Deploy the functions (<code>firebase deploy --only functions</code>) to the <code>us-central1</code> region used by the app, with the same Firebase project as your config files.</td></tr><tr><td>Changing the Cloud Functions region</td><td>The app calls functions in <code>us-central1</code> (Firebase default). To use another region change <code>REGION</code> in <code>functions/index.js</code> and use <code>FirebaseFunctions.instanceFor(region: '...')</code> in <code>Backend.callable</code> (<code>lib/services/firebase_service.dart</code>), then redeploy.</td></tr><tr><td>"AI service is temporarily unavailable"</td><td>Check the function logs (<code>firebase functions:log</code>), that <code>GEMINI_API_KEY</code> is valid and has quota, and that the provider is listed in <code>AI_PROVIDER_ORDER</code>.</td></tr><tr><td>App Check errors in debug</td><td>Add the printed debug token under App Check &rarr; Manage debug tokens, or keep <code>ENFORCE_APP_CHECK=false</code> while developing.</td></tr><tr><td>"Not enough coins"</td><td>Use the daily bonus / coin store, or raise <code>users/&lt;uid&gt;.coins</code> in the Firebase console for test users.</td></tr><tr><td>Store products not found</td><td>Products must be active, the app must be uploaded to at least an internal test track and the tester account added as license tester.</td></tr><tr><td>Purchase succeeds in the store but no coins</td><td>See function logs of <code>verifyPurchase</code>: usually the Play API access / service account permission or Apple key parameters are missing.</td></tr><tr><td>Compressed PDF text cannot be selected</td><td>Expected: Compress PDF re-renders pages as images. Choose the "High Quality" level for less loss or keep the original when text must remain selectable.</td></tr><tr><td>Document to PDF loses formatting</td><td>Only the text of .docx / .txt / .md is converted by design.</td></tr><tr><td><code>flutter pub get</code> version conflict</td><td>Use the Flutter/Dart versions listed in Requirements, then run <code>flutter clean &amp;&amp; flutter pub get</code>.</td></tr></tbody></table>
+
+    </section>
+
+    <section id="changelog">
+      <h2>Changelog</h2>
+
+      <h3>1.1.0</h3>
+      <ul class="doc-list">
+        <li><strong>Security:</strong> all AI requests now go through Firebase Cloud Functions (Gemini, OpenAI, Grok); removed all client-side provider keys, the in-app key screen and the other providers (Groq, Cohere, HuggingFace).</li>
+        <li><strong>Security:</strong> coins, referral, daily/ad rewards and purchases moved to the server; store receipts are verified; added documented Firestore security rules; optional App Check.</li>
+        <li><strong>New:</strong> real Compress PDF; PDF Maker and Document to PDF now create valid multi-page PDFs; Document to PDF reads .docx text; Personal Notes are saved in Firestore; email/password sign-in.</li>
+        <li><strong>Compliance:</strong> in-app account deletion, content filtering, report button on AI output, AI/third-party notice and updated privacy text.</li>
+        <li><strong>Removed:</strong> fake progress animations, simulated results, the unsupported "Google GenKit" claim, desktop/web folders, unused packages.</li>
+        <li><strong>Platform:</strong> explicit compileSdk/targetSdk 36 and minSdk 24; iOS privacy strings and Google Sign-In URL scheme; generic package/bundle IDs, no signing team, no personal Firebase files.</li>
+      </ul>
+      <h3>1.1.0 - review pass</h3>
+      <ul class="doc-list">
+        <li>Removed the simulated image-loading progress, made-up fallback coin packs, a hard-coded VAT row and the non-working voice button.</li>
+        <li>Website Summarizer refuses pages it cannot read instead of letting the AI guess.</li>
+        <li>Image generation is charged by the server, and coins are refunded automatically when the image service fails.</li>
+        <li>Consistent 10 MB file limit for AI media tools (matches the backend).</li>
+        <li>PRO badge only after a verified purchase; corrected coin prices shown in the store; honest loading messages.</li>
+        <li>Removed unused screens/files and renamed misleading identifiers.</li>
+        <li>Removed 21 unused assets (including old PayPal/Stripe icons); support e-mail is now a placeholder (<code>MyStrings.supportEmail</code>).</li>
+        <li>Default AI models updated (gemini-flash-latest, gpt-4o-mini, grok-4.3) and configurable; Cloud Functions run on Node.js 22.</li>
+      </ul>
+      <h3>1.0.1</h3>
+      <ul class="doc-list"><li>Initial CodeCanyon build.</li></ul>
+
+    </section>
+
     <section id="support">
       <h2>Support</h2>
-      <p>Need assistance or have technical inquiries? Reach out to our engineering support team.</p>
 
-      <div class="callout callout-info">
-        <svg class="callout-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-        <div>
-          <p><strong>Support Email:</strong> vertexstation@gmail.com</p>
-          <p>Please include your item purchase code, a detailed description of the issue, and terminal error logs when contacting support.</p>
-        </div>
-      </div>
+      <p>Need help? Contact <strong>vertexstation@gmail.com</strong> and include your purchase code, a description of the problem and relevant logs (<code>flutter run -v</code>, <code>firebase functions:log</code>).</p>
+      <p>Support covers questions about the item and bugs in the delivered code. It does not cover third-party service accounts, API quotas/billing, store review decisions or custom development.</p>
+
     </section>
-
   </main>
 
-  <!-- RIGHT TOC -->
   <aside class="toc" id="toc">
     <div class="toc-label">On this page</div>
     <ul class="toc-list" id="tocList"></ul>
