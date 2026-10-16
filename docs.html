@@ -823,7 +823,7 @@ GROK_MODEL=grok-4.3</code></pre></div></div></div><div class="step"><div class="
       <ul class="doc-list">
         <li><code>users/{uid}</code>: the owner can <strong>read</strong>; <strong>nobody can write</strong> from the client, so coins, purchase flags and referral data cannot be tampered with.</li>
         <li><code>users/{uid}/notes</code>: owner read/write with field and size validation.</li>
-        <li><code>transactions</code>: owner read-only. <code>purchases</code>: no client access.</li>
+        <li><code>transactions</code>: owner read-only. <code>purchases</code> and <code>imageCharges</code>: no client access (server only).</li>
         <li><code>reports</code>: create-only, must contain the caller's uid, size limited.</li>
         <li>Everything else is denied.</li>
       </ul>
@@ -1093,7 +1093,7 @@ match /transactions/{id} {
       <h2>AI Tools &amp; Features</h2>
 
       <p>Every tool is implemented and functional. Tools marked <em>AI</em> call the <code>aiGenerate</code> function; the others run fully on-device.</p>
-      <table class="req-table"><thead><tr><th>Tool</th><th>Type</th><th>Notes</th></tr></thead><tbody><tr><td>Ask Anything (chat)</td><td>AI</td><td>Gemini / OpenAI / Grok through Cloud Functions</td></tr><tr><td>Translator, Email Maker, Social Post, Hashtags, Script Writer, Code Generator, Personal Advice (birthday, anniversary, gift, promotion, CV)</td><td>AI</td><td>Text generation</td></tr><tr><td>AI Math Solver, Image Describer, Image to Text, PDF to Text, PDF Summarizer, Audio Summarizer, Video to Text</td><td>AI (Gemini multimodal)</td><td>File is uploaded to the function (max ~10 MB) and analysed</td></tr><tr><td>Grammar Checker, Website Summarizer</td><td>AI</td><td>Website text is fetched by the app, then summarised</td></tr><tr><td>Image Generator</td><td>Third-party</td><td>Prompt is filtered and charged by the backend, image is produced by image.pollinations.ai. If every image fails to load the app requests a refund automatically.</td></tr><tr><td>Compress PDF</td><td>On-device</td><td>Renders each page to a JPEG (quality/resolution per level) and rebuilds the PDF. <strong>Text becomes part of the image and is no longer selectable.</strong> If the result would be larger the original is kept.</td></tr><tr><td>PDF Maker</td><td>On-device</td><td>Creates a real multi-page PDF (Roboto font: Latin, Cyrillic, Greek)</td></tr><tr><td>Document to PDF</td><td>On-device</td><td>Converts the <strong>text</strong> of .txt, .md and .docx files into a PDF. Formatting, images and tables are not preserved; .doc and .rtf are not supported.</td></tr><tr><td>Password Generator</td><td>On-device</td><td>Cryptographically secure random generator, nothing is sent to a server</td></tr><tr><td>Personal Notes</td><td>Firestore</td><td>Saved per user in Firestore (guests keep notes only in memory)</td></tr></tbody></table>
+      <table class="req-table"><thead><tr><th>Tool</th><th>Type</th><th>Notes</th></tr></thead><tbody><tr><td>Ask Anything (chat)</td><td>AI</td><td>Gemini / OpenAI / Grok through Cloud Functions</td></tr><tr><td>Translator, Email Maker, Social Post, Hashtags, Script Writer, Code Generator, Personal Advice (birthday, anniversary, gift, promotion, CV)</td><td>AI</td><td>Text generation</td></tr><tr><td>AI Math Solver, Image Describer, Image to Text, PDF to Text, PDF Summarizer, Audio Summarizer, Video to Text</td><td>AI (Gemini multimodal)</td><td>File is uploaded to the function (max ~10 MB) and analysed</td></tr><tr><td>Grammar Checker</td><td>AI</td><td>Corrects the text you enter</td></tr><tr><td>Website Summarizer</td><td>AI</td><td>The page text is downloaded by the app and summarized; pages that cannot be read are rejected (no coins charged)</td></tr><tr><td>Image Generator</td><td>Third-party</td><td>Prompt is filtered and charged by the backend, image is produced by image.pollinations.ai. If every image fails to load the app requests a refund automatically.</td></tr><tr><td>Compress PDF</td><td>On-device</td><td>Renders each page to a JPEG (quality/resolution per level) and rebuilds the PDF. <strong>Text becomes part of the image and is no longer selectable.</strong> If the result would be larger the original is kept.</td></tr><tr><td>PDF Maker</td><td>On-device</td><td>Creates a real multi-page PDF (Roboto font: Latin, Cyrillic, Greek)</td></tr><tr><td>Document to PDF</td><td>On-device</td><td>Converts the <strong>text</strong> of .txt, .md and .docx files into a PDF. Formatting, images and tables are not preserved; .doc and .rtf are not supported.</td></tr><tr><td>Password Generator</td><td>On-device</td><td>Cryptographically secure random generator, nothing is sent to a server</td></tr><tr><td>Personal Notes</td><td>Firestore</td><td>Saved per user in Firestore (guests keep notes only in memory)</td></tr></tbody></table>
 
     </section>
 
@@ -1133,7 +1133,7 @@ match /transactions/{id} {
     <section id="ai-disclosure">
       <h2>AI Disclosure</h2>
 
-      <p>In line with marketplace transparency requirements: <strong>AI tools were used to assist with the development of this item</strong> - including parts of the source code, the documentation text and some in-app text. AI-assisted output was reviewed and tested by the author. Graphics and icons: see the credits in your item description (state here whether you used generative tools for them).</p>
+      <p>In line with marketplace transparency requirements: <strong>AI tools were used to assist with the development of this item</strong> - including parts of the source code, the documentation text and some in-app text. AI-assisted output was reviewed and tested by the author. The use of AI for graphics (icons, illustrations, screenshots) is declared in the item description on CodeCanyon.</p>
       <p>Inside the app, users are shown a one-time notice (<span class="filepath">lib/src/presentation/view/component/ai_consent.dart</span>) explaining that content is generated by AI providers, can be inaccurate and can be reported.</p>
 
     </section>
@@ -1209,9 +1209,6 @@ storeFile=/absolute/path/to/upload-keystore.jks</code></pre></div><p><span class
         <li><strong>Compliance:</strong> in-app account deletion, content filtering, report button on AI output, AI/third-party notice and updated privacy text.</li>
         <li><strong>Removed:</strong> fake progress animations, simulated results, the unsupported "Google GenKit" claim, desktop/web folders, unused packages.</li>
         <li><strong>Platform:</strong> explicit compileSdk/targetSdk 36 and minSdk 24; iOS privacy strings and Google Sign-In URL scheme; generic package/bundle IDs, no signing team, no personal Firebase files.</li>
-      </ul>
-      <h3>1.1.0 - review pass</h3>
-      <ul class="doc-list">
         <li>Removed the simulated image-loading progress, made-up fallback coin packs, a hard-coded VAT row and the non-working voice button.</li>
         <li>Website Summarizer refuses pages it cannot read instead of letting the AI guess.</li>
         <li>Image generation is charged by the server, and coins are refunded automatically when the image service fails.</li>
