@@ -5,6 +5,6 @@ Firebase-only backend (Auth, Firestore, Cloud Functions), Gemini / OpenAI / Grok
 
 - `index.html` – landing page with screenshot showcase
 - `docs.html` – developer documentation (generated from the project's `documentation/index.html`; screenshots use `shots/`)
-- `shots/` – app screenshots (WebP)
+- `shots/` – app screenshots (JPEG, captured from the real app)
 
 No build step. Deploy the repo root as a static site (e.g. Vercel).

@@ -11,13 +11,13 @@
   <meta name="theme-color" content="#1d4ed8">
   <link rel="canonical" href="https://toolyai.vertexstation.com/">
   <meta property="og:url" content="https://toolyai.vertexstation.com/">
-  <meta property="og:image" content="https://toolyai.vertexstation.com/shots/all-tools.webp">
+  <meta property="og:image" content="https://toolyai.vertexstation.com/cover.png">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Tooly AI">
   <meta property="og:title" content="Tooly AI – Flutter AI Chatbot App with 21+ AI Tools | Gemini, OpenAI, AdMob &amp; In-App Purchases">
   <meta property="og:description" content="Tooly AI is a production-ready Flutter AI chatbot &amp; assistant app source code for Android and iOS: 21+ AI tools, Gemini, OpenAI &amp; Grok through a Firebase Cloud Functions backend, Firebase Auth, AdMob ads, in-app coin purchases and 15 languages. Launch your own AI app fast.">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:image" content="https://toolyai.vertexstation.com/shots/all-tools.webp">
+  <meta name="twitter:image" content="https://toolyai.vertexstation.com/cover.png">
   <meta name="twitter:title" content="Tooly AI – Flutter AI Chatbot App with 21+ AI Tools | Gemini, OpenAI, AdMob &amp; In-App Purchases">
   <meta name="twitter:description" content="Tooly AI is a production-ready Flutter AI chatbot &amp; assistant app source code for Android and iOS: 21+ AI tools, Gemini, OpenAI &amp; Grok through a Firebase Cloud Functions backend, Firebase Auth, AdMob ads, in-app coin purchases and 15 languages. Launch your own AI app fast.">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
@@ -1095,7 +1095,7 @@
           <p class="tool-desc">Turn text prompts into images (via image.pollinations.ai), then download or share them. Coins are refunded automatically if generation fails.</p>
           <div class="tool-foot">
             <span class="tool-tag">20 coins / generation</span>
-            <button class="tool-view" type="button" data-shot="image-gen">View screen <span aria-hidden="true">&rarr;</span></button>
+            <button class="tool-view" type="button" data-shot="image-generator">View screen <span aria-hidden="true">&rarr;</span></button>
           </div>
         </article>
         <article class="tool-card" data-cat="create" data-name="ai code generator generate python, dart, javascript, typescript, java, c++, c#, go, rust, swift, kotlin, php and more, with one-tap copy." style="--c1:#1d4ed8;--c2:#3b82f6">
@@ -1150,7 +1150,7 @@
           <p class="tool-desc">Paste an article or blog URL; the page text is downloaded and summarized.</p>
           <div class="tool-foot">
             <span class="tool-tag">5 coins / request</span>
-            <button class="tool-view" type="button" data-shot="website">View screen <span aria-hidden="true">&rarr;</span></button>
+            <button class="tool-view" type="button" data-shot="website-summarizer">View screen <span aria-hidden="true">&rarr;</span></button>
           </div>
         </article>
         <article class="tool-card" data-cat="docs" data-name="compress pdf shrink pdfs on your device by re-rendering pages as optimized images (text in the result is not selectable)." style="--c1:#db2777;--c2:#f472b6">
@@ -1205,7 +1205,7 @@
           <p class="tool-desc">Type or scan equations and get step-by-step solutions for algebra, calculus and physics.</p>
           <div class="tool-foot">
             <span class="tool-tag">5 coins / request</span>
-            <button class="tool-view" type="button" data-shot="math">View screen <span aria-hidden="true">&rarr;</span></button>
+            <button class="tool-view" type="button" data-shot="math-solver">View screen <span aria-hidden="true">&rarr;</span></button>
           </div>
         </article>
         <article class="tool-card" data-cat="util" data-name="personal notes notes manager with priority tags, saved to your account in cloud firestore." style="--c1:#7c3aed;--c2:#a78bfa">
@@ -1224,7 +1224,7 @@
           <p class="tool-desc">Create strong passwords on-device with a cryptographically secure generator and strength meter.</p>
           <div class="tool-foot">
             <span class="tool-tag">Free · on-device</span>
-            <button class="tool-view" type="button" data-shot="password">View screen <span aria-hidden="true">&rarr;</span></button>
+            <button class="tool-view" type="button" data-shot="password-generator">View screen <span aria-hidden="true">&rarr;</span></button>
           </div>
         </article>
       </div>
@@ -1565,15 +1565,28 @@
     (function(){
       const cats={core:'Home & Tools',create:'AI Creation',docs:'Documents & Media',more:'Utilities'};
       const S=[
-        ['core','onboard','Onboarding','Three-step introduction to the AI toolkit.','First launch'],
-        ['core','login','Sign-in','Firebase Auth with Google sign-in, email/password and guest browsing.','Firebase Auth'],
+        ['core','onboarding','Onboarding','Three-step introduction to the AI toolkit.','First launch'],
+        ['core','sign-in','Sign-in','Firebase Auth with Google sign-in, email/password and guest browsing.','Firebase Auth'],
+        ['core','home','Home','Coin balance, upgrade card and your most used tools.','Home'],
         ['core','all-tools','All Tools','Every tool in a colorful grid - chat, translate, create, solve and summarize.','21 tools'],
-        ['core','translator','Multi-Language Translator','Translate between 20+ languages with auto-detect and swap.','2 coins / request'],
-        ['create','image-gen','AI Image Generator','Prompt, quantity and size; images come from image.pollinations.ai.','20 coins / generation'],
-        ['docs','website','Website Summarizer','Paste a URL; the page text is downloaded and summarized by AI.','5 coins / request'],
-        ['docs','math','AI Math Solver','Type a problem or upload a photo for a step-by-step solution.','5 coins / request'],
-        ['more','password','Password Generator','Strong passwords generated on-device with a strength meter.','Free · on-device']
-      ].map(function(a){return {c:a[0],src:'shots/'+a[1]+'.webp',t:a[2],d:a[3],g:a[4]}});
+        ['core','menu-coins','Coins, Refer &amp; Earn','Coin balance, referral code, rewarded ads and settings.','Free coins'],
+        ['core','language-switch','15 Languages','Switch the app language; Arabic and Urdu use right-to-left layout.','15 languages'],
+        ['create','chat','AI Chat','Ask anything; answers come from your Gemini, OpenAI or Grok backend.','1 coin / message'],
+        ['create','translator','Multi-Language Translator','Translate between 20+ languages with auto-detect and swap.','2 coins / request'],
+        ['create','image-generator','AI Image Generator','Prompt, quantity and size; images come from image.pollinations.ai.','20 coins / generation'],
+        ['create','email-writer','E-mail Writer','Purpose, tone and subject in, a ready-to-send e-mail out.','3 coins / request'],
+        ['create','social-media','Social Posts &amp; Hashtags','Platform-ready posts and high-engagement hashtag sets.','1-2 coins / request'],
+        ['create','script-writer','Script Writer','YouTube, TikTok and Instagram scripts with target duration.','10 coins / request'],
+        ['create','code-generator','Code Generator','Describe it, pick a language, copy the code.','5 coins / request'],
+        ['create','personal-advice','Personal Advice','CV maker, gift ideas, birthday, anniversary and promotion messages.','2-5 coins / request'],
+        ['docs','pdf-summarizer','PDF Summarizer','Executive summary, key bullets or study notes for a PDF.','5 coins / request'],
+        ['docs','pdf-to-text','PDF to Text','Extract structured text from PDF files (up to 10 MB).','5 coins / request'],
+        ['docs','website-summarizer','Website Summarizer','Paste a URL; the page text is downloaded and summarized by AI.','5 coins / request'],
+        ['docs','math-solver','AI Math Solver','Type a problem or upload a photo for a step-by-step solution.','5 coins / request'],
+        ['docs','grammar-checker','AI Grammar Fixer','Fix grammar, polish style and choose the target tone.','3 coins / request'],
+        ['more','password-generator','Password Generator','Strong passwords generated on-device with a strength meter.','Free · on-device'],
+        ['more','personal-notes','Personal Notes','Notes with priorities, saved to your account when signed in.','Free']
+      ].map(function(a){return {c:a[0],src:'shots/'+a[1]+'.jpg',t:a[2],d:a[3],g:a[4]}});
       var cur=0,cat='all',timer=null,playing=true,front='a';
       var $=function(id){return document.getElementById(id)};
       var tabs=$('sc-tabs'),thumbs=$('sc-thumbs'),imgA=$('sc-img-a'),imgB=$('sc-img-b');
@@ -1619,7 +1632,7 @@
         tilt.addEventListener('mousemove',function(e){var r=tilt.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;dev.style.transform='rotateY('+x*14+'deg) rotateX('+(-y*10)+'deg)'});
         tilt.addEventListener('mouseleave',function(){dev.style.transform=''});
       }
-      window.scShow=function(name){var i=S.findIndex(function(s){return s.src==="shots/"+name+".webp"});if(i>-1){go(i);restart();}};
+      window.scShow=function(name){var i=S.findIndex(function(s){return s.src==="shots/"+name+".jpg"});if(i>-1){go(i);restart();}};
       go(0);restart();
     })();
 
