@@ -678,6 +678,7 @@
       <ul class="nav-items">
         <li><a href="#coin-economy"><span class="nav-dot"></span>Coin Economy</a></li>
         <li><a href="#api-costs"><span class="nav-dot"></span>API Costs &amp; Pricing</a></li>
+        <li><a href="#economy-config"><span class="nav-dot"></span>Economy Settings</a></li>
         <li><a href="#admob"><span class="nav-dot"></span>AdMob Integration</a></li>
         <li><a href="#ad-placements"><span class="nav-dot"></span>Ad Placements</a></li>
         <li><a href="#iap"><span class="nav-dot"></span>In-App Purchases</a></li>
@@ -687,6 +688,7 @@
     <div class="nav-section">
       <span class="nav-section-label">Release</span>
       <ul class="nav-items">
+        <li><a href="#updating"><span class="nav-dot"></span>Updating</a></li>
         <li><a href="#signing"><span class="nav-dot"></span>Release Signing</a></li>
         <li><a href="#submission"><span class="nav-dot"></span>Submission</a></li>
         <li><a href="#troubleshooting"><span class="nav-dot"></span>Troubleshooting &amp; FAQ</a></li>
@@ -714,7 +716,7 @@
       <p>Versions below match <span class="filepath">pubspec.yaml</span>, <span class="filepath">android/app/build.gradle</span> and <span class="filepath">functions/package.json</span>.</p>
       <table class="req-table"><thead><tr><th>Tool</th><th>Version</th><th>Notes</th></tr></thead><tbody><tr><td>Flutter SDK</td><td><code>&gt;=3.38.1</code> (tested with 3.47)</td><td><code>flutter: &#39;&gt;=3.38.1&#39;</code> in pubspec.yaml</td></tr><tr><td>Dart SDK</td><td><code>&gt;=3.11.0 &lt;4.0.0</code></td><td>Bundled with Flutter</td></tr><tr><td>Java</td><td>17</td><td>Android Gradle</td></tr><tr><td>Android</td><td>compileSdk <code>36</code>, targetSdk <code>36</code>, minSdk <code>24</code></td><td>Declared explicitly in android/app/build.gradle</td></tr><tr><td>iOS</td><td>Deployment target <code>15.0</code>, Xcode 15+</td><td>CocoaPods required (macOS only)</td></tr><tr><td>Node.js</td><td>22</td><td>Only to deploy Cloud Functions</td></tr><tr><td>Firebase CLI</td><td>latest (<code>npm i -g firebase-tools</code>)</td><td>Deploy rules &amp; functions</td></tr><tr><td>Firebase plan</td><td><strong>Blaze (pay-as-you-go)</strong></td><td>Required by Cloud Functions (free quota included)</td></tr></tbody></table>
       <h3>Dependency usage</h3>
-      <p>Every package in <span class="filepath">pubspec.yaml</span> is used by the app. Key ones: <code>firebase_core / firebase_auth / cloud_firestore / cloud_functions / firebase_app_check</code> (backend), <code>google_sign_in</code>, <code>in_app_purchase</code> + <code>in_app_purchase_android</code>, <code>google_mobile_ads</code>, <code>pdf</code> + <code>pdfx</code> (PDF Maker, Compress PDF), <code>archive</code> (DOCX text extraction), <code>file_picker</code>, <code>image_picker</code>, <code>share_plus</code>, <code>flutter_bloc</code>, <code>get_it</code>. The app is <strong>mobile only (Android &amp; iOS)</strong>: desktop and web folders are not included.</p>
+      <p>Every package in <span class="filepath">pubspec.yaml</span> is used by the app. Key ones: <code>firebase_core / firebase_auth / cloud_firestore / cloud_functions / firebase_app_check</code> (backend), <code>google_sign_in</code>, <code>in_app_purchase</code> + <code>in_app_purchase_android</code>, <code>google_mobile_ads</code>, <code>pdf</code> + <code>pdfx</code> (PDF Maker, Compress PDF), <code>archive</code> (DOCX text extraction), <code>file_picker</code>, <code>image_picker</code>, <code>share_plus</code>, <code>flutter_bloc</code>, <code>get_it</code>. The app is <strong>mobile only (Android &amp; iOS)</strong>: desktop and web folders are not included. <strong>pointycastle is not a dependency of this project</strong> (it is absent from <code>pubspec.yaml</code> and <code>pubspec.lock</code>), and no license-validation, purchase-code check or revenue-routing logic exists in the app or the Cloud Functions. Purchases are verified only against the Google Play / App Store APIs using your own credentials.</p>
 
     </section>
 
@@ -1001,6 +1003,18 @@ match /transactions/{id} {
         <svg class="callout-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
         <div><p>To safely rename package declarations across all native folders automatically, use the <a href="https://pub.dev/packages/change_app_package_name" target="_blank">change_app_package_name</a> package via terminal command: <code>dart run change_app_package_name:main com.yourcompany.yourapp</code>.</p></div>
       </div>
+      <h3>Warning: changing the package name / bundle ID after release</h3>
+      <div class="callout callout-warn"><svg class="callout-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg><div><p>Choose your final package name <strong>before</strong> publishing. On Google Play and the App Store the application ID is permanent: a different ID is a <strong>different app</strong>. Existing users must install a new app and lose reviews, installs and ratings. Changing it later can also break coin balances, purchases and sign-in.</p></div></div>
+      <p>Coin balances are stored in Firestore under the user's Firebase UID, so they survive only if every step below is done:</p>
+      <ul class="doc-list">
+        <li><strong>Same Firebase project:</strong> add the new Android / iOS app (new ID) to the <em>existing</em> Firebase project, download the new <code>google-services.json</code> / <code>GoogleService-Info.plist</code> and add the SHA-1 / SHA-256 keys again, otherwise Google Sign-In fails and users cannot reach their account. A new Firebase project = all balances lost.</li>
+        <li><strong>Backend:</strong> set <code>ANDROID_PACKAGE_NAME</code> and <code>IOS_BUNDLE_ID</code> for the Cloud Functions (see <a href="#functions">Cloud Functions</a>), otherwise purchase verification rejects receipts of the new app.</li>
+        <li><strong>In-app products:</strong> products and purchase history belong to the old app ID. Recreate the products in the new store listing; unconsumed or past purchases do not transfer. Refund or credit affected users manually (edit <code>users/&lt;uid&gt;.coins</code> in the Firestore console).</li>
+        <li><strong>Guests</strong> have no account; their local data cannot be migrated.</li>
+        <li>Register the new app in App Check, AdMob (app link) and any OAuth client you use.</li>
+        <li>Tell old users to sign in with the same Google account in the new app; there is no automatic migration of installs.</li>
+      </ul>
+
     </section>
 
     <!-- ── APP STRINGS ──────────────────────────────────── -->
@@ -1239,6 +1253,45 @@ static const String onBoardDes4 = "onboard_4_desc";</code></pre></div></div>
       </ul>
     </section>
 
+
+    <section id="economy-config">
+      <h2>Economy &amp; Rewards Settings</h2>
+      <p>All coin amounts live in <strong>one file</strong>: <span class="filepath">functions/config.js</span>. The server is authoritative; after editing it, run <code>firebase deploy --only functions</code>. These are the exact constant names and their default values:</p>
+      <div class="code-block"><div class="code-block-header"><span class="code-block-title">functions/config.js (defaults)</span></div><pre><code>const FEATURE_COSTS = {          // coins charged per request
+  chat: 1, translate: 2, code: 5, social_post: 2, hashtag: 1, email: 3,
+  script: 10, personal_message: 2, cv_maker: 5, math_solver: 5, grammar: 3,
+  image_describer: 5, image_to_text: 5, pdf_summarizer: 5, pdf_to_text: 5,
+  audio_summarizer: 5, video_to_text: 15, website_summarizer: 5,
+  image_generation: 20,
+};
+
+const PRODUCT_COINS = {          // store product id -&gt; coins credited
+  starter: 100, basic: 525, popular: 1100, premium: 2800, ultimate: 5750,
+};
+
+const SIGNUP_COINS = 20;         // welcome bonus
+const REFERRAL_COINS = 10;       // given to BOTH users
+
+const DAILY_BONUS_BASE = 10;     // day 1 bonus
+const DAILY_BONUS_STEP = 5;      // +5 per consecutive day
+const DAILY_BONUS_MAX_EXTRA = 40;// cap: 10 + 40 = 50 coins
+
+const AD_REWARD_COINS = 3;       // coins per completed rewarded ad
+const AD_REWARD_COOLDOWN_MS = 30 * 1000;  // min time between rewards
+const AD_REWARD_DAILY_CAP = 10;  // max rewarded ads per user per day
+
+const IMAGE_REFUND_WINDOW_MS = 30 * 60 * 1000; // image refund window
+const MAX_REQUESTS_PER_MINUTE = 20;            // per-user rate limit</code></pre></div>
+      <h3>Example: make rewarded ads give 5 coins, max 5 per day, 60 s apart</h3>
+      <div class="code-block"><div class="code-block-header"><span class="code-block-title">functions/config.js</span></div><pre><code>const AD_REWARD_COINS = 5;
+const AD_REWARD_COOLDOWN_MS = 60 * 1000;
+const AD_REWARD_DAILY_CAP = 5;</code></pre></div>
+      <h3>Display copies you must keep in sync</h3>
+      <p>The app only <em>displays</em> prices; it never decides them. When you change a number above, update the matching display text:</p>
+      <table class="req-table"><thead><tr><th>Changed constant</th><th>Also edit (display only)</th></tr></thead><tbody><tr><td><code>FEATURE_COSTS</code></td><td><code>FeatureCost</code> in <span class="filepath">lib/services/firebase_service.dart</span> (button labels such as &quot;Generate Code (5 Coins)&quot;)</td></tr><tr><td><code>PRODUCT_COINS</code> / product ids</td><td><code>PurchasesConfig.packageCoinsMap</code> and <code>productIds</code> in <span class="filepath">lib/services/purchases_service.dart</span>, and the products in Play Console / App Store Connect</td></tr><tr><td><code>SIGNUP_COINS</code>, <code>REFERRAL_COINS</code>, <code>AD_REWARD_*</code></td><td>Texts in <span class="filepath">assets/language/*.json</span>: <code>faq_a2</code>, <code>menu_ad_rewarded</code>, <code>menu_watch_ads_subtitle</code>, <code>menu_refer_subtitle</code>, <code>auth_referral_description</code></td></tr></tbody></table>
+      <p>Prices charged to real customers are set in Google Play Console / App Store Connect, not in the code. See <a href="#api-costs">API Cost Guide</a> for how to choose them.</p>
+    </section>
+
     <section id="admob">
       <h2>AdMob Integration</h2>
 
@@ -1252,6 +1305,42 @@ static const String onBoardDes4 = "onboard_4_desc";</code></pre></div></div>
 &lt;string&gt;ca-app-pub-XXXXXXXXXXXXXXXX~XXXXXXXXXX&lt;/string&gt;</code></pre></div></div></div><div class="step"><div class="step-num">3</div><div class="step-body"><p>Ad unit IDs in <span class="filepath">lib/services/ad_manager.dart</span> (<code>bannerAdUnitId</code>, <code>interstitialAdUnitId</code>, <code>rewardedAdUnitId</code>). Replace the Google test IDs with your own before release.</p></div></div></div>
       <p>Rewarded-ad coins are granted by <code>claimAdReward</code> (3 coins, 30 s cooldown, 10 per day). For stronger protection enable AdMob <em>server-side verification</em> on your rewarded ad unit and extend the function.</p>
       <p>The <code>NSUserTrackingUsageDescription</code> and a <code>SKAdNetworkItems</code> entry are already in Info.plist. Add the full SKAdNetwork list from the AdMob documentation, implement the Google UMP consent flow where required (EEA/UK) and set your ad content rating.</p>
+
+      <h3>EU / UK consent (Google UMP) - required for the EEA, UK and Switzerland</h3>
+      <div class="callout callout-warn"><svg class="callout-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg><div><p>If your app is available in the EEA, UK or Switzerland you must collect consent with a Google-certified consent management platform before requesting personalized ads. Apps without it can be rejected or have ad serving limited. The project does <strong>not</strong> ship a live consent message because the message belongs to <em>your</em> AdMob account.</p></div></div>
+      <div class="steps">
+        <div class="step"><div class="step-num">1</div><div class="step-body"><p>In AdMob open <em>Privacy &amp; messaging</em>, create a <strong>GDPR</strong> message for your app (and optionally a US state regulations message) and publish it.</p></div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-body"><p>The <code>google_mobile_ads</code> package already contains the UMP SDK (<code>ConsentInformation</code>, <code>ConsentForm</code>); no extra dependency is needed. In <span class="filepath">lib/services/ad_manager.dart</span> replace <code>initialize()</code> with:</p>
+<div class="code-block"><div class="code-block-header"><span class="code-block-title">lib/services/ad_manager.dart</span></div><pre><code>static Future&lt;void&gt; initialize() async {
+  if (_initialized) return;
+  final completer = Completer&lt;void&gt;();
+  ConsentInformation.instance.requestConsentInfoUpdate(
+    ConsentRequestParameters(),
+    () async {
+      // Shows the form only when the user is in a region that requires it.
+      await ConsentForm.loadAndShowConsentFormIfRequired((FormError? error) {});
+      completer.complete();
+    },
+    (FormError error) =&gt; completer.complete(), // continue without ads if it fails
+  );
+  await completer.future;
+  if (await ConsentInformation.instance.canRequestAds()) {
+    await MobileAds.instance.initialize();
+    _initialized = true;
+    loadInterstitialAd();
+  }
+}</code></pre></div>
+        <p>Add <code>import 'dart:async';</code> at the top of the file. The banner, interstitial and rewarded requests then only start after consent was obtained.</p></div></div>
+        <div class="step"><div class="step-num">3</div><div class="step-body"><p>Add a <strong>privacy options</strong> entry (for example in the Menu) so users can change their choice later: check <code>await ConsentInformation.instance.getPrivacyOptionsRequirementStatus() == PrivacyOptionsRequirementStatus.required</code> and call <code>ConsentForm.showPrivacyOptionsForm((error) {})</code>.</p></div></div>
+        <div class="step"><div class="step-num">4</div><div class="step-body"><p>Test with <code>ConsentRequestParameters(consentDebugSettings: ConsentDebugSettings(debugGeography: DebugGeography.debugGeographyEea, testIdentifiers: ['YOUR_TEST_DEVICE_ID']))</code> (remove before release).</p></div></div>
+        <div class="step"><div class="step-num">5</div><div class="step-body"><p>iOS: keep <code>NSUserTrackingUsageDescription</code> in Info.plist and request App Tracking Transparency where your AdMob message requires it. Declare ad usage in the Play Data safety form and the App Store privacy labels.</p></div></div>
+      </div>
+      <p>Official step-by-step guide: <a href="https://developers.google.com/admob/flutter/privacy" rel="nofollow noopener" target="_blank">developers.google.com/admob/flutter/privacy</a>.</p>
+
+      <h3>Where AdMob IDs are defined (all are Google test IDs)</h3>
+      <table class="req-table"><thead><tr><th>File</th><th>What</th><th>Value shipped</th></tr></thead><tbody><tr><td><span class="filepath">lib/services/ad_manager.dart</span></td><td><code>bannerAdUnitId</code>, <code>interstitialAdUnitId</code>, <code>rewardedAdUnitId</code></td><td>Google test ad units <code>ca-app-pub-3940256099942544/...</code></td></tr><tr><td><span class="filepath">android/app/src/main/AndroidManifest.xml</span></td><td><code>com.google.android.gms.ads.APPLICATION_ID</code></td><td>Google test app ID <code>ca-app-pub-3940256099942544~3347511713</code></td></tr><tr><td><span class="filepath">ios/Runner/Info.plist</span></td><td><code>GADApplicationIdentifier</code></td><td>Google test app ID <code>ca-app-pub-3940256099942544~1458002511</code></td></tr></tbody></table>
+      <p>No other file contains an ad ID. There is no ad-related ID of the author anywhere in the package; the Cloud Functions contain no ad network code.</p>
+
 
     </section>
 
@@ -1271,6 +1360,21 @@ static const String onBoardDes4 = "onboard_4_desc";</code></pre></div></div>
       <p>Create these as <strong>consumable / managed products</strong> in Play Console and App Store Connect. To change amounts edit <code>PRODUCT_COINS</code> in <span class="filepath">functions/config.js</span> (authoritative) and the display mirror in <span class="filepath">lib/services/purchases_service.dart</span>, then redeploy the functions. Credentials: see <a href="#functions">Cloud Functions</a>.</p>
       <p>A verified purchase also sets <code>hasPurchasedPlan</code>, which removes ads for that user.</p>
 
+    </section>
+
+
+    <section id="updating">
+      <h2>Updating to a New Version</h2>
+      <p>Keep your customised project in <strong>Git</strong>. For each update, copy the new files into a separate branch, review the differences and merge; do not blindly overwrite the whole folder. Read the <a href="#changelog">Changelog</a> first.</p>
+      <table class="req-table"><thead><tr><th>Keep your version (customised by you)</th><th>Safe to overwrite with the new version</th></tr></thead><tbody><tr><td><span class="filepath">android/app/google-services.json</span>, <span class="filepath">ios/Runner/GoogleService-Info.plist</span> (this project uses these files; there is no <code>firebase_options.dart</code>)</td><td>Dart code in <span class="filepath">lib/</span> that you did not edit</td></tr><tr><td><span class="filepath">android/key.properties</span> and your keystore, iOS signing settings</td><td><span class="filepath">functions/index.js</span> (then redeploy; re-apply your edits if you changed it)</td></tr><tr><td><span class="filepath">functions/config.js</span> (your coin prices, costs, rewards, models, blocked words) and <span class="filepath">functions/.env.&lt;project-id&gt;</span></td><td><span class="filepath">firestore.rules</span> and <span class="filepath">firestore.indexes.json</span> (compare first, then deploy)</td></tr><tr><td><span class="filepath">assets/language/*.json</span> (your translations: <strong>merge</strong> new keys from the new <code>en.json</code> instead of replacing)</td><td><span class="filepath">pubspec.yaml</span> dependencies (merge: keep your own added packages), <span class="filepath">pubspec.lock</span></td></tr><tr><td><span class="filepath">lib/services/ad_manager.dart</span> ad unit IDs, AdMob app IDs in AndroidManifest.xml / Info.plist</td><td><span class="filepath">Documentation/</span></td></tr><tr><td><span class="filepath">lib/services/purchases_service.dart</span> (product ids), <span class="filepath">lib/src/utils/constants/m_strings.dart</span> (app name), <span class="filepath">m_images.dart</span>, colors/theme</td><td>Unchanged Cloud Function helpers and platform folders you never touched</td></tr><tr><td><span class="filepath">android/app/build.gradle</span> (applicationId, versionCode / versionName), <span class="filepath">AndroidManifest.xml</span> labels, iOS bundle id, launcher icons, splash assets</td><td></td></tr><tr><td>Onboarding list in <span class="filepath">splash_repository_impl.dart</span>, any screens you customised</td><td></td></tr></tbody></table>
+      <h3>Update steps</h3>
+      <ol class="doc-list">
+        <li>Commit your current project. Create a branch <code>update</code>.</li>
+        <li>Copy the new item files over, restore the &quot;keep&quot; files above from Git (<code>git checkout main -- &lt;file&gt;</code>) and merge new keys into your language files.</li>
+        <li>Run <code>flutter pub get</code>, <code>flutter analyze</code>, then <code>cd functions &amp;&amp; npm ci</code>.</li>
+        <li>Deploy backend changes first: <code>firebase deploy --only functions,firestore:rules</code> (old app versions keep working with additive changes), then publish the new app build with a higher <code>versionCode</code>.</li>
+        <li>Never change Firestore field names yourself; stored coin balances and transactions are read by the functions.</li>
+      </ol>
     </section>
 
     <section id="signing">
