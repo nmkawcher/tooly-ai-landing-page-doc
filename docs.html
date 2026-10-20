@@ -658,6 +658,7 @@
         <li><a href="#app-strings"><span class="nav-dot"></span>App Strings</a></li>
         <li><a href="#brand-colors"><span class="nav-dot"></span>Brand Colors</a></li>
         <li><a href="#onboarding"><span class="nav-dot"></span>Onboarding</a></li>
+        <li><a href="#localization-status"><span class="nav-dot"></span>Localization Status</a></li>
       </ul>
     </div>
 
@@ -675,7 +676,10 @@
     <div class="nav-section">
       <span class="nav-section-label">Monetization</span>
       <ul class="nav-items">
+        <li><a href="#coin-economy"><span class="nav-dot"></span>Coin Economy</a></li>
+        <li><a href="#api-costs"><span class="nav-dot"></span>API Costs &amp; Pricing</a></li>
         <li><a href="#admob"><span class="nav-dot"></span>AdMob Integration</a></li>
+        <li><a href="#ad-placements"><span class="nav-dot"></span>Ad Placements</a></li>
         <li><a href="#iap"><span class="nav-dot"></span>In-App Purchases</a></li>
       </ul>
     </div>
@@ -699,7 +703,7 @@
       <div class="page-eyebrow"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>Documentation</div>
       <h1>Tooly AI <span class="badge">v1.0.0</span></h1>
       <p class="lead">A Flutter AI toolkit for Android and iOS with a complete <strong>Firebase-only backend</strong>: Firebase Authentication, Cloud Firestore and Cloud Functions. No separate server is required.</p>
-      <p>Tooly AI contains 20 tools: AI chat, translator, code/email/script/social-post/hashtag/CV generators, image generation, AI math solver, grammar fixer, image/PDF/audio/video/website analysis, PDF compression, PDF maker, document-to-PDF conversion, password generator and private notes. Features are paid for with an in-app coin balance.</p>
+      <p>Tooly AI contains 21 tools: AI chat, translator, code/email/script/social-post/hashtag/CV generators, image generation, AI math solver, grammar fixer, image/PDF/audio/video/website analysis, PDF compression, PDF maker, document-to-PDF conversion, password generator and private notes. Features are paid for with an in-app coin balance.</p>
       <div class="callout callout-info"><svg class="callout-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg><div><p><strong>Architecture in one sentence:</strong> the app never contains an AI key or credits coins itself. Every AI request, coin change, purchase verification and account deletion is performed by Cloud Functions (<code>functions/</code>), protected by Firestore security rules (<code>firestore.rules</code>).</p></div></div>
       <table class="req-table"><thead><tr><th>Layer</th><th>Technology</th><th>Where</th></tr></thead><tbody><tr><td>Mobile app</td><td>Flutter, BLoC, GetIt</td><td><span class="filepath">lib/</span></td></tr><tr><td>Authentication</td><td>Firebase Auth (Google, Email/Password)</td><td><span class="filepath">lib/services/firebase_service.dart</span></td></tr><tr><td>Database</td><td>Cloud Firestore + security rules</td><td><span class="filepath">firestore.rules</span></td></tr><tr><td>Backend logic</td><td>Cloud Functions for Firebase (Node.js 22)</td><td><span class="filepath">functions/index.js</span></td></tr><tr><td>AI models</td><td>Google Gemini, OpenAI, xAI Grok (called only from Cloud Functions)</td><td><span class="filepath">functions/config.js</span></td></tr><tr><td>Purchases</td><td>Google Play Billing / StoreKit, verified server-side</td><td><span class="filepath">lib/services/purchases_service.dart</span></td></tr></tbody></table>
     </section>
@@ -757,7 +761,7 @@ open ios/Runner.xcworkspace</code></pre></div><p>In Xcode select your own <stron
 
     <section id="screenshots">
       <h2>Screenshots</h2>
-      <p>Main screens of the app (files in <span class="filepath">documentation/screenshots/</span>).</p>
+      <p>Main screens of the app (files in <span class="filepath">Documentation/shots/</span>). The screenshots were captured from the real app running as a guest. Screens that need a signed-in user or a Google Play / App Store product list (coin store, AI results) cannot be shown without your own Firebase and store setup; the <a href="#coin-economy">Coin Economy</a> section describes them step by step.</p>
       <div class="tools-grid">
         <div class="tool-card"><div class="tool-card-title">Onboarding</div><img src="shots/onboard.webp" alt="Onboarding" loading="lazy" style="border:1px solid var(--border);border-radius:10px;margin-top:8px"></div>
         <div class="tool-card"><div class="tool-card-title">Sign-in</div><img src="shots/login.webp" alt="Sign-in" loading="lazy" style="border:1px solid var(--border);border-radius:10px;margin-top:8px"></div>
@@ -767,6 +771,12 @@ open ios/Runner.xcworkspace</code></pre></div><p>In Xcode select your own <stron
         <div class="tool-card"><div class="tool-card-title">AI Math Solver</div><img src="shots/math.webp" alt="AI Math Solver" loading="lazy" style="border:1px solid var(--border);border-radius:10px;margin-top:8px"></div>
         <div class="tool-card"><div class="tool-card-title">Website Summarizer</div><img src="shots/website.webp" alt="Website Summarizer" loading="lazy" style="border:1px solid var(--border);border-radius:10px;margin-top:8px"></div>
         <div class="tool-card"><div class="tool-card-title">Password Generator</div><img src="shots/password.webp" alt="Password Generator" loading="lazy" style="border:1px solid var(--border);border-radius:10px;margin-top:8px"></div>
+        <div class="tool-card"><div class="tool-card-title">AI Chat (Ask Anything)</div><img src="shots/chat.png" alt="AI Chat (Ask Anything)" loading="lazy" style="border:1px solid var(--border);border-radius:10px;margin-top:8px"></div>
+        <div class="tool-card"><div class="tool-card-title">Code Generator</div><img src="shots/code-generator.png" alt="Code Generator" loading="lazy" style="border:1px solid var(--border);border-radius:10px;margin-top:8px"></div>
+        <div class="tool-card"><div class="tool-card-title">AI Grammar Fixer</div><img src="shots/grammar-checker.png" alt="AI Grammar Fixer" loading="lazy" style="border:1px solid var(--border);border-radius:10px;margin-top:8px"></div>
+        <div class="tool-card"><div class="tool-card-title">PDF Maker</div><img src="shots/pdf-maker.png" alt="PDF Maker" loading="lazy" style="border:1px solid var(--border);border-radius:10px;margin-top:8px"></div>
+        <div class="tool-card"><div class="tool-card-title">PDF Summarizer</div><img src="shots/pdf-summarizer.png" alt="PDF Summarizer" loading="lazy" style="border:1px solid var(--border);border-radius:10px;margin-top:8px"></div>
+        <div class="tool-card"><div class="tool-card-title">Menu: coin balance, Refer &amp; Earn, free coins</div><img src="shots/menu-coins.png" alt="Menu: coin balance, Refer &amp; Earn, free coins" loading="lazy" style="border:1px solid var(--border);border-radius:10px;margin-top:8px"></div>
       </div>
     </section>
 
@@ -1028,7 +1038,7 @@ match /transactions/{id} {
 }</code></pre>
       </div>
 
-      <p>English (<code>en.json</code>) is the fallback: if a key is missing in another language, the English text is shown. Some newer texts (for example the account, report and AI notice strings) exist only in English for now - add them to the other language files if you need fully localized builds.</p>
+      <p>English (<code>en.json</code>) is the fallback: if a key is missing in another language, the English text is shown. Some newer texts exist only in English - see <a href="#localization-status">Localization Status</a> for the exact keys.</p>
       <p>Localization helper files path: <span class="filepath">lib/core/localization/app_localizations.dart</span> and <span class="filepath">lib/core/localization/localization_cubit.dart</span>.</p>
     </section>
 
@@ -1068,6 +1078,20 @@ match /transactions/{id} {
     </section>
 
     <!-- ── ONBOARDING ───────────────────────────────────── -->
+
+    <section id="localization-status">
+      <h2>Localization Status</h2>
+      <div class="callout callout-warn"><svg class="callout-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg><div><p>Not every string is translated yet. Use this list if you need fully localized builds. Missing keys fall back to English automatically (no crash), so the app stays usable in every language.</p></div></div>
+      <h3>1. Keys that exist only in English (en.json)</h3>
+      <p>These <strong>61 keys</strong> are missing in all 14 other language files (ar, bn, de, es, fr, hi, id, ja, pt, ru, tr, ur, vi, zh). They cover account deletion, reporting, the AI notice, file-size and progress-step texts, parts of the FAQ and privacy policy, and image refund messages:</p>
+      <p style="line-height:1.9"><code>continue_with_limited_version</code>, <code>faq_a2</code>, <code>faq_a3</code>, <code>faq_a4</code>, <code>faq_a5</code>, <code>chat_error_no_response</code>, <code>home_upgrade_subtitle</code>, <code>menu_watch_ads_subtitle</code>, <code>recharge_instant_credit</code>, <code>recharge_benefit_image_desc</code>, <code>recharge_benefit_tools_desc</code>, <code>checkout_instant_delivery</code>, <code>checkout_protected</code>, <code>mn_privacy_contact_dpo</code>, <code>mn_privacy_s1_body</code>, <code>mn_privacy_s3_body</code>, <code>tl_pdfsum_file_too_large</code>, <code>tl_audsum_file_too_large</code>, <code>tl_compress_step_read</code>, <code>tl_compress_step_write</code>, <code>tl_compress_supports</code>, <code>tl_word_step_parse</code>, <code>tl_pdftext_too_large</code>, <code>tl_pdftext_supports</code>, <code>tl_vid_too_large</code>, <code>report_content</code>, <code>report_title</code>, <code>report_subtitle</code>, <code>report_sent</code>, <code>email_sign_in</code>, <code>delete_account</code>, <code>delete_account_warning</code>, <code>delete_account_confirm</code>, <code>delete_account_done</code>, <code>pn_sync_failed</code>, <code>tl_compress_already_small</code>, <code>tl_compress_note</code>, <code>ai_consent_title</code>, <code>ai_consent_body</code>, <code>ai_consent_accept</code>, <code>mn_privacy_s5_title</code>, <code>mn_privacy_s5_body</code>, <code>mn_privacy_s6_title</code>, <code>mn_privacy_s6_body</code>, <code>menu_member</code>, <code>menu_ad_limit_reached</code>, <code>tl_websum_unreadable</code>, <code>tl_audsum_step_read</code>, <code>tl_grammar_step_syntax</code>, <code>tl_imgdesc_step_pixels</code>, <code>tl_math_step_read</code>, <code>tl_ocr_step_process</code>, <code>tl_pdfmaker_step_format</code>, <code>tl_pdfsum_step_init</code>, <code>tl_pdftext_step_load</code>, <code>tl_vid_step_read</code>, <code>tl_websum_step_download</code>, <code>tl_websum_step_synth</code>, <code>img_refunded</code>, <code>img_service_back</code>, <code>img_refund_not_possible</code></p>
+      <p>To translate: copy each key with its English value from <span class="filepath">assets/language/en.json</span> into every language file and translate the value (keep placeholders such as <code>{cost}</code> unchanged).</p>
+      <h3>2. Bengali (bn.json) is only partly translated</h3>
+      <p><code>bn.json</code> has all older keys, but <strong>459 of its values are still English text</strong> (only about 250 of 718 values are Bengali). The full key list is in <a href="untranslated-keys.txt">untranslated-keys.txt</a> (in the Documentation folder). If you do not want to translate Bengali, remove it from the language list of the app (<span class="filepath">lib/model/response/language_model.dart</span> and the language picker).</p>
+      <h3>3. Other languages</h3>
+      <p>Apart from the 61 keys above, the other 13 languages are complete; they keep English text only for brand names and loan words (3 - 22 values each, such as <em>Tooly AI</em> or <em>Online</em>).</p>
+    </section>
+
     <section id="onboarding">
       <h2>Onboarding</h2>
       <p>The onboarding slideshow introduces users to the app features. The slide content is fully localized and driven by keys in the language JSON file, while visual animations use Lottie files.</p>
@@ -1089,6 +1113,24 @@ match /transactions/{id} {
   <span class="c-key">"you_would_like"</span>: <span class="c-str">"Chat, summarize, translate, and solve instantly."</span>
 }</code></pre>
       </div>
+
+      <h3>Add, remove or reorder slides</h3>
+      <p>The slides come from one list, so the page indicator, progress bar and the last-page button adapt automatically to any number of slides. The order of the list is the order of the slides.</p>
+      <p><strong>List:</strong> <code>getOnBoardingList()</code> in <span class="filepath">lib/features/splash/data/repositories/splash_repository_impl.dart</span>. Each slide is <code>OnBoardingModel(animation, title, description)</code>.</p>
+      <h4>Add a slide</h4>
+      <div class="steps">
+        <div class="step"><div class="step-num">1</div><div class="step-body"><p>Add title and description to <span class="filepath">assets/language/en.json</span> (and the other language files; missing languages fall back to English):</p><pre><code>"onboard_4_title": "Scan &amp; Convert",
+"onboard_4_desc": "Turn documents into PDFs in seconds."</code></pre></div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-body"><p>Register the keys in <span class="filepath">lib/src/utils/constants/m_strings.dart</span>:</p><pre><code>static const String onBoard4 = "onboard_4_title";
+static const String onBoardDes4 = "onboard_4_desc";</code></pre></div></div>
+        <div class="step"><div class="step-num">3</div><div class="step-body"><p>Put a Lottie JSON file into <span class="filepath">assets/lottie/</span> (the folder is already declared in <code>pubspec.yaml</code>; use animations you are licensed to redistribute) and register it in <span class="filepath">lib/src/utils/constants/m_images.dart</span>:</p><pre><code>static const String scanDoc = 'assets/lottie/scan_doc.json';</code></pre></div></div>
+        <div class="step"><div class="step-num">4</div><div class="step-body"><p>Add the slide to the list in <code>getOnBoardingList()</code>:</p><pre><code>OnBoardingModel(MyImage.scanDoc, MyStrings.onBoard4.tr, MyStrings.onBoardDes4.tr),</code></pre></div></div>
+      </div>
+      <h4>Remove a slide</h4>
+      <p>Delete its <code>OnBoardingModel(...)</code> line from <code>getOnBoardingList()</code>. You can also delete its strings and Lottie file if nothing else uses them (the chat robot animation is also used on the chat screen).</p>
+      <h4>Reorder slides</h4>
+      <p>Move the <code>OnBoardingModel(...)</code> lines up or down in the list. Use <code>\n</code> inside a title (as in en.json) to control line breaks.</p>
+      <p>Onboarding is shown on first launch and has a <em>Skip</em> button.</p>
     </section>
 
     <!-- ── AI TOOLS & FEATURES ──────────────────────────── -->
@@ -1131,6 +1173,18 @@ match /transactions/{id} {
       <table class="req-table"><thead><tr><th>Service</th><th>Used for</th><th>Data sent</th></tr></thead><tbody><tr><td>Firebase (Auth, Firestore, Cloud Functions, App Check)</td><td>Backend</td><td>Account data, coins, notes, reports</td></tr><tr><td>Google Gemini API</td><td>AI text &amp; multimodal results (primary)</td><td>Prompts, uploaded files (via your Cloud Functions)</td></tr><tr><td>OpenAI API</td><td>AI text fallback and content moderation</td><td>Prompts (via Cloud Functions)</td></tr><tr><td>xAI Grok API</td><td>AI text fallback</td><td>Prompts (via Cloud Functions)</td></tr><tr><td><strong>image.pollinations.ai</strong></td><td>Generates the images of the Image Generator</td><td>The (filtered) text prompt is part of the image URL requested by the device</td></tr><tr><td>Google AdMob</td><td>Banner, interstitial and rewarded ads</td><td>Advertising identifiers</td></tr><tr><td>Google Play Billing / Apple StoreKit</td><td>Coin purchases</td><td>Purchase receipts</td></tr><tr><td>Google Sign-In</td><td>Authentication</td><td>Google account profile</td></tr></tbody></table>
       <div class="callout callout-warn"><svg class="callout-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg><div><p>image.pollinations.ai is a free third-party service that is not controlled by the author. Its availability, output and terms can change. If you need guaranteed quality, replace it with an image API of your choice (see <code>image_details_screen.dart</code>).</p></div></div>
 
+      <h3>About image.pollinations.ai (important)</h3>
+      <p>The Image Generator uses <strong>image.pollinations.ai</strong>, a free <strong>third-party service that the author does not operate, own or control</strong>. By using this item you accept the dependency and its risks:</p>
+      <ul class="doc-list">
+        <li><strong>Availability:</strong> there is no service-level guarantee. It may be slow, rate-limited or offline at any time.</li>
+        <li><strong>Terms and pricing:</strong> the provider may change its terms of service, introduce fees, require registration or an API key, or shut down. Review its current terms before launch and reflect them in your own privacy policy and terms.</li>
+        <li><strong>Content policy:</strong> generated images are subject to the provider's own policy and underlying models, which the author cannot influence. The app filters prompts first (server-side blocklist and OpenAI moderation) and offers a Report button, but you remain responsible for content your users generate.</li>
+        <li><strong>Privacy:</strong> the (filtered) prompt is part of the image URL requested from the service.</li>
+      </ul>
+      <p><strong>If the service becomes unavailable:</strong> the image request fails, the user sees an error and the app asks the backend for a refund. The server re-checks the image URLs itself and returns the coins (one refund per charge, within 30 minutes); when the service is back the user can retry. No other tool depends on it.</p>
+      <p><strong>If it changes its terms, or you prefer another provider:</strong> edit <code>buildImageUrls()</code> and the availability check in <span class="filepath">functions/index.js</span> (for example call an image API of your choice from the Cloud Function and return its image URLs), and if needed the display code in <span class="filepath">lib/src/presentation/view/pages/image_screen/image_details_screen.dart</span>. To remove the feature, delete the Image Generator tile from the home tool list.</p>
+
+
     </section>
 
     <section id="ai-disclosure">
@@ -1141,10 +1195,57 @@ match /transactions/{id} {
 
     </section>
 
+
+    <section id="coin-economy">
+      <h2>Coin Economy (User Walkthrough)</h2>
+      <p>Every AI tool costs <strong>coins</strong>. This is what your end users experience from first launch to buying more coins.</p>
+      <h3>1. Getting coins</h3>
+      <table class="req-table"><thead><tr><th>Source</th><th>Coins</th><th>Where the user sees it</th></tr></thead><tbody><tr><td>Welcome bonus (first sign-in)</td><td>20 (<code>SIGNUP_COINS</code>)</td><td>Balance badge (star icon) in the top bar of the app screens</td></tr><tr><td>Daily bonus</td><td>10 on day 1, +5 per consecutive day, capped at 50 (streak resets after a missed day)</td><td>Daily bonus prompt after sign-in; toast &quot;Daily Bonus Claimed&quot;</td></tr><tr><td>Referral code</td><td>10 for both users (<code>REFERRAL_COINS</code>)</td><td>Menu: Refer &amp; Earn (copy own code / enter a friend's code)</td></tr><tr><td>Rewarded video ad</td><td>3 per ad, max 10 per day, 30 s cooldown</td><td>Menu: watch an ad to earn coins</td></tr><tr><td>Coin pack purchase</td><td>100 / 525 / 1100 / 2800 / 5750 (configurable)</td><td>Menu: Recharge Coins (coin store)</td></tr></tbody></table>
+      <p>Guests (not signed in) have no wallet and can only use the on-device tools. Balances live in Firestore and can only be changed by Cloud Functions.</p>
+      <h3>2. The coin store and purchase flow</h3>
+      <div class="steps">
+        <div class="step"><div class="step-num">1</div><div class="step-body"><p><strong>Open the store:</strong> Menu, <em>Recharge Coins</em> (or the upgrade card on the Home screen). The screen shows one card per coin pack: coin amount, a badge (Starter, Popular...), a bonus label and the <em>localized price returned by Google Play / App Store</em>.</p></div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-body"><p><strong>Select a pack</strong> (the popular pack is pre-selected) and tap the bottom button <em>Recharge N Coins</em>. The checkout screen summarises pack and price.</p></div></div>
+        <div class="step"><div class="step-num">3</div><div class="step-body"><p><strong>Pay:</strong> the native Google Play / App Store purchase sheet opens. Prices and currency come from the store, never from the app.</p></div></div>
+        <div class="step"><div class="step-num">4</div><div class="step-body"><p><strong>Verification and credit:</strong> the app sends the receipt to the <code>verifyPurchase</code> Cloud Function, which verifies it with Google / Apple and credits the coins once (duplicate receipts are ignored). The balance badge updates and the purchase is consumed only after the server confirmed it.</p></div></div>
+        <div class="step"><div class="step-num">5</div><div class="step-body"><p><strong>Ad-free:</strong> a verified purchase sets <code>hasPurchasedPlan</code>, which removes banner and interstitial ads for that user (rewarded ads stay opt-in).</p></div></div>
+      </div>
+      <h3>3. How coins are deducted when a tool is used</h3>
+      <ol class="doc-list">
+        <li>The user fills in a tool and taps the generate button, which shows the price (for example <em>Generate Email (3 Coins)</em>). With too few coins a message says how many are needed.</li>
+        <li>The request goes to a Cloud Function that filters the prompt and then <strong>charges the coins in a Firestore transaction before calling the AI provider</strong>. Every charge is logged as a transaction.</li>
+        <li>If the AI provider fails or the answer is blocked, the coins are <strong>refunded automatically</strong>.</li>
+        <li>Image generation is charged the same way; if the third-party image service cannot deliver the images, the app requests a one-time refund within 30 minutes (the server verifies the failure itself).</li>
+        <li>On-device tools (PDF Maker, Compress PDF, Document to PDF, Password Generator) are free.</li>
+        <li>Rate limit: 20 requests per minute per user.</li>
+      </ol>
+      <h3>Default price list (coins per request)</h3>
+      <table class="req-table"><thead><tr><th>Feature</th><th>Coins</th><th>Feature</th><th>Coins</th></tr></thead><tbody><tr><td>Chat</td><td>1</td><td>Math solver</td><td>5</td></tr><tr><td>Hashtags</td><td>1</td><td>Image describer / Image to text</td><td>5 / 5</td></tr><tr><td>Translator, Social post, Personal message</td><td>2</td><td>PDF summarizer / PDF to text</td><td>5 / 5</td></tr><tr><td>Email, Grammar checker</td><td>3</td><td>Audio summarizer / Website summarizer</td><td>5 / 5</td></tr><tr><td>Code generator, CV maker</td><td>5</td><td>Script writer</td><td>10</td></tr><tr><td>Video to text</td><td>15</td><td>Image generation</td><td>20</td></tr></tbody></table>
+      <p>Edit <code>FEATURE_COSTS</code> in <span class="filepath">functions/config.js</span> (authoritative) and keep the display mirror <code>FeatureCost</code> in <span class="filepath">lib/services/firebase_service.dart</span> in sync, then redeploy the functions.</p>
+    </section>
+
+    <section id="api-costs">
+      <h2>API Cost Guide &amp; Pricing Your Coin Packs</h2>
+      <div class="callout callout-warn"><svg class="callout-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg><div><p>These are <strong>rough, order-of-magnitude estimates</strong> to help you price coin packs. Provider prices and model names change often; check the current price pages of Google Gemini, OpenAI, xAI and Firebase and set budget alerts before launch. The author does not guarantee these numbers.</p></div></div>
+      <p><strong>Assumptions:</strong> a typical text request uses about 1,000 input tokens and 800 output tokens (answers are capped at 4,096 tokens). Example list prices: Gemini Flash-class about $0.30 per 1M input / $2.50 per 1M output tokens; GPT-4o-mini about $0.15 / $0.60.</p>
+      <table class="req-table"><thead><tr><th>Request type</th><th>Approx. provider cost per request</th><th>Per 1,000 requests</th></tr></thead><tbody><tr><td>Text tool (chat, email, translator...) on Gemini Flash</td><td>$0.002 - $0.003</td><td>$2 - $3</td></tr><tr><td>Text tool on GPT-4o-mini (fallback)</td><td>$0.0006 - $0.001</td><td>$0.6 - $1</td></tr><tr><td>Text tool on xAI Grok</td><td>same order as Gemini Flash - check xAI pricing</td><td>check</td></tr><tr><td>Image / PDF / math analysis (multimodal Gemini, 5k - 20k input tokens)</td><td>$0.005 - $0.02</td><td>$5 - $20</td></tr><tr><td>Audio / video to text or summary (grows with duration)</td><td>$0.02 - $0.10+</td><td>$20 - $100+</td></tr><tr><td>Image generation (image.pollinations.ai)</td><td>$0 to you today (free third-party service, not guaranteed)</td><td>$0</td></tr><tr><td>Firebase (Functions, Firestore, Auth)</td><td>fractions of a cent; the free quota covers early usage</td><td>usually under $1</td></tr></tbody></table>
+      <h3>Turning this into coin prices</h3>
+      <ul class="doc-list">
+        <li><strong>Cost per coin</strong> = provider cost per request &divide; coins charged. With the default prices: chat about $0.002 per coin, a 5-coin text tool about $0.0005 per coin, video (15 coins, about $0.05) about $0.003 per coin. Plan with <strong>about $0.003 per coin</strong> as a safe upper bound.</li>
+        <li>Stores keep 15 - 30 % of every sale, so use <em>net revenue = price &times; 0.7</em>.</li>
+        <li>A comfortable rule: net revenue per coin at least 3 &times; cost per coin. With $0.003 per coin that is about <strong>$0.01 per coin</strong>, e.g. 100 coins for $0.99, 525 coins for about $4.99, 1100 coins for about $9.99.</li>
+        <li><strong>Free coins cost you money too.</strong> A very active free user can claim 20 (welcome) + up to 50 per day (daily bonus) + 30 per day (10 rewarded ads) + referrals; rewarded-ad revenue offsets part of this. Lower the welcome / daily bonus values in <span class="filepath">functions/config.js</span> and <span class="filepath">functions/index.js</span> if your costs are higher than expected.</li>
+        <li>Cheaper models lower all numbers: change <code>GEMINI_MODEL</code> / <code>OPENAI_MODEL</code> / <code>GROK_MODEL</code> (see <a href="#functions">Cloud Functions</a>) or raise the coin price of heavy tools (video, audio) in <code>FEATURE_COSTS</code>.</li>
+      </ul>
+    </section>
+
     <section id="admob">
       <h2>AdMob Integration</h2>
 
       <p>Banner, interstitial and rewarded ads use the Google Mobile Ads SDK. The project ships with Google's <strong>test</strong> IDs, so ads work out of the box and are safe for development.</p>
+
+      <div class="callout callout-warn"><svg class="callout-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg><div><p><strong>No author-owned ad IDs are in the source.</strong> Every AdMob ID in this project (<code>ad_manager.dart</code>, <code>AndroidManifest.xml</code>, <code>Info.plist</code>) is one of Google's public <em>test</em> IDs (<code>ca-app-pub-3940256099942544...</code>), so the author collects no ad revenue from your app. <strong>You must replace the two app IDs and the three ad unit IDs with your own from your AdMob account before release.</strong> Test IDs earn nothing, and clicking your own live ads can get your AdMob account banned.</p></div></div>
+
       <div class="steps"><div class="step"><div class="step-num">1</div><div class="step-body"><p>Android App ID in <span class="filepath">android/app/src/main/AndroidManifest.xml</span>:</p><div class="code-block"><div class="code-block-header"><span class="code-block-title">AndroidManifest.xml</span><button class="copy-btn" data-code="&lt;meta-data&#10;    android:name=&quot;com.google.android.gms.ads.APPLICATION_ID&quot;&#10;    android:value=&quot;ca-app-pub-XXXXXXXXXXXXXXXX~XXXXXXXXXX&quot;/&gt;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy</button></div><pre><code>&lt;meta-data
     android:name="com.google.android.gms.ads.APPLICATION_ID"
     android:value="ca-app-pub-XXXXXXXXXXXXXXXX~XXXXXXXXXX"/&gt;</code></pre></div></div></div><div class="step"><div class="step-num">2</div><div class="step-body"><p>iOS App ID in <span class="filepath">ios/Runner/Info.plist</span>:</p><div class="code-block"><div class="code-block-header"><span class="code-block-title">Info.plist</span><button class="copy-btn" data-code="&lt;key&gt;GADApplicationIdentifier&lt;/key&gt;&#10;&lt;string&gt;ca-app-pub-XXXXXXXXXXXXXXXX~XXXXXXXXXX&lt;/string&gt;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy</button></div><pre><code>&lt;key&gt;GADApplicationIdentifier&lt;/key&gt;
@@ -1152,6 +1253,14 @@ match /transactions/{id} {
       <p>Rewarded-ad coins are granted by <code>claimAdReward</code> (3 coins, 30 s cooldown, 10 per day). For stronger protection enable AdMob <em>server-side verification</em> on your rewarded ad unit and extend the function.</p>
       <p>The <code>NSUserTrackingUsageDescription</code> and a <code>SKAdNetworkItems</code> entry are already in Info.plist. Add the full SKAdNetwork list from the AdMob documentation, implement the Google UMP consent flow where required (EEA/UK) and set your ad content rating.</p>
 
+    </section>
+
+
+    <section id="ad-placements">
+      <h2>Ad Placements</h2>
+      <p>Your end users will see three ad formats. Banner and interstitial ads are hidden for users who bought a coin pack (<code>hasPurchasedPlan</code>); rewarded ads are always opt-in. The logic lives in <span class="filepath">lib/services/ad_manager.dart</span>.</p>
+      <table class="req-table"><thead><tr><th>Format</th><th>Where it appears</th><th>When it triggers</th></tr></thead><tbody><tr><td><strong>Banner</strong></td><td>Home screen, below the tool grid (<span class="filepath">banner_ad_widget.dart</span>, labelled &quot;Advertisement&quot;)</td><td>Loaded when the Home screen opens; takes no space if no ad was loaded.</td></tr><tr><td><strong>Interstitial</strong> (full screen)</td><td>After a result is produced in: Translator, Email Maker, Social Post, Hashtags, Script Writer, Code Generator, Birthday / Anniversary / Gift / Promotion / CV makers, Password Generator, Math Solver, Grammar Checker, Image Describer, Image to Text, PDF to Text, PDF Summarizer, Audio Summarizer, Compress PDF and PDF Maker</td><td>Preloaded in the background; shown only after a <em>successful</em> result and at most once every <strong>2 minutes</strong>. Not shown on errors, in chat, or to paying users.</td></tr><tr><td><strong>Rewarded</strong> (opt-in video)</td><td>Menu screen: watch an ad to earn coins</td><td>Only when the user taps it. After the video completes the server grants 3 coins (max 10 per day, 30 s cooldown). Closing early gives nothing.</td></tr></tbody></table>
+      <p>To change the frequency edit the cooldown in <code>showInterstitialAd</code>. To remove a placement delete the matching <code>AdManager.showInterstitialAd(...)</code> call, or the <code>BannerAdWidget()</code> in <span class="filepath">home_screen.dart</span>.</p>
     </section>
 
     <section id="iap">
